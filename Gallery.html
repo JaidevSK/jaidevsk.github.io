@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Gallery.css">
+    <!--Include Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <title>Flowers of IITGN</title>
+    
+
+    
+</head>
+<body>
+    <header>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="Flowers_Of_IITGN.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="Gallery.html">Gallery</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="SBN.html">Search by Name</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ChatBot.html">Flower ChatBot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="FlowerVision.html">Flower Vision</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="Quiz.html">Flower Quiz</a>
+              </li>
+          </ul>
+    </header>
+    
+    <div id = "titleblock">
+        <div class="row">
+        <img src="logo.png" alt="Logo" id="logo">
+        <h1>   Flowers of IITGN    </h1>
+        <img src="logo3.jpg" alt="Logo2" id="logo2">
+    </div>  
+    </div>
+    <div id="description">
+        <h2>Gallery</h2>
+
+        <p>Here is the gallery of the flowers of IITGN. You can see the images of the flowers and their details by clicking on the images.</p>
+        
+        <div class="gallery">
+            <div class = "gi">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Neem_%28Azadirachta_indica%29_in_Hyderabad_W_IMG_6976.jpg/220px-Neem_%28Azadirachta_indica%29_in_Hyderabad_W_IMG_6976.jpg" alt="Neem" class="galleryimg" id = "img1" title="Azadirachta indica" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Azadirachta_indica'" onmouseover="document.querySelector('.species1').innerHTML = 'Azadirachta indica'; document.getElementById('img1').style.opacity = '0.5';" onmouseout="document.querySelector('.species1').innerHTML = ''; document.getElementById('img1').style.opacity = '1';">
+            <p class="species1"></p>
+            </div>
+
+            <div class = "gi">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Peacock_Flower_or_Pride-of-Barbados_--_Caesalpinia_pulcherrima.jpg/220px-Peacock_Flower_or_Pride-of-Barbados_--_Caesalpinia_pulcherrima.jpg" alt="Peacock Flower" class="galleryimg" id = "img2" title="Caesalpinia pulcherrima" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Caesalpinia_pulcherrima'" onmouseover="document.querySelector('.species2').innerHTML = 'Caesalpinia pulcherrima'; document.getElementById('img2').style.opacity = '0.5';" onmouseout="document.querySelector('.species2').innerHTML = ''; document.getElementById('img2').style.opacity = '1';">
+            <p class="species2"></p>
+            </div>
+
+            <div class = "gi">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Canna_edulis%2C_Glasgow_Botanic_Gardens.jpg/800px-Canna_edulis%2C_Glasgow_Botanic_Gardens.jpg" alt="Canna" class="galleryimg" id = "img3" title="Canna indica" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Canna_indica'" onmouseover="document.querySelector('.species3').innerHTML = 'Canna indica'; document.getElementById('img3').style.opacity = '0.5';" onmouseout="document.querySelector('.species3').innerHTML = ''; document.getElementById('img3').style.opacity = '1';">
+            <p class="species3"></p>
+            </div>
+
+            <div class = "gi">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Golden_shower_full_bloom.jpg/800px-Golden_shower_full_bloom.jpg" alt="Golden Shower" class="galleryimg" id = "img4" title="Cassia fistula" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Cassia_fistula'" onmouseover="document.querySelector('.species4').innerHTML = 'Cassia fistula'; document.getElementById('img4').style.opacity = '0.5';" onmouseout="document.querySelector('.species4').innerHTML = ''; document.getElementById('img4').style.opacity = '1';">
+            <p class="species4"></p>
+            </div>
+
+            <div class = "gi">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Cassia_javanica%2C_closeup.jpg/220px-Cassia_javanica%2C_closeup.jpg" alt="Cassia" class="galleryimg" id = "img5" title="Cassia javanica" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Cassia_javanica'" onmouseover="document.querySelector('.species5').innerHTML = 'Cassia javanica'; document.getElementById('img5').style.opacity = '0.5';" onmouseout="document.querySelector('.species5').innerHTML = ''; document.getElementById('img5').style.opacity = '1';">
+            <p class="species5"></p>
+            </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Close-up_view_of_Catharanthus_roseus_%28known_as_Nayantara_in_Bengali%29_in_West_Bengal%2C_India%2C_photographed_by_Yogabrata_Chakraborty%2C_on_October_2%2C_2021.jpg/220px-Close-up_view_of_Catharanthus_roseus_%28known_as_Nayantara_in_Bengali%29_in_West_Bengal%2C_India%2C_photographed_by_Yogabrata_Chakraborty%2C_on_October_2%2C_2021.jpg" alt="Catharanthus" class="galleryimg" id = "img6" title="Catharanthus roseus" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Catharanthus_roseus'" onmouseover="document.querySelector('.species6').innerHTML = 'Catharanthus roseus'; document.getElementById('img6').style.opacity = '0.5';" onmouseout="document.querySelector('.species6').innerHTML = ''; document.getElementById('img6').style.opacity = '1';">
+                <p class="species6"></p>
+                </div>
+            
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Royal_Poinciana.jpg/220px-Royal_Poinciana.jpg" alt="Royal Poinciana" class="galleryimg" id = "img7" title="Delonix regia" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Delonix_regia'" onmouseover="document.querySelector('.species7').innerHTML = 'Delonix regia'; document.getElementById('img7').style.opacity = '0.5';" onmouseout="document.querySelector('.species7').innerHTML = ''; document.getElementById('img7').style.opacity = '1';">
+                <p class="species7"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flower_of_Eclipta_prostrata_-_Macro_Photography_02.jpg/150px-Flower_of_Eclipta_prostrata_-_Macro_Photography_02.jpg" alt="Eclipta" class="galleryimg" id = "img8" title="Eclipta prostrata" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Eclipta_prostrata'" onmouseover="document.querySelector('.species8').innerHTML = 'Eclipta prostrata'; document.getElementById('img8').style.opacity = '0.5';" onmouseout="document.querySelector('.species8').innerHTML = ''; document.getElementById('img8').style.opacity = '1';">
+                <p class="species8"></p>
+            </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Gaillardia_in_Aspen_%2891273%29.jpg/220px-Gaillardia_in_Aspen_%2891273%29.jpg" alt="Gaillardia" class="galleryimg" id = "img9" title="Gaillardia pulchella" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Gaillardia_pulchella'" onmouseover="document.querySelector('.species9').innerHTML = 'Gaillardia pulchella'; document.getElementById('img9').style.opacity = '0.5';" onmouseout="document.querySelector('.species9').innerHTML = ''; document.getElementById('img9').style.opacity = '1';">
+                <p class="species9"></p>
+                </div>  
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Verbena_bonariensis1.jpg/220px-Verbena_bonariensis1.jpg" alt="Verbena" class="galleryimg" id = "img10" title="Verbena" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Verbena'" onmouseover="document.querySelector('.species10').innerHTML = 'Verbena'; document.getElementById('img10').style.opacity = '0.5';" onmouseout="document.querySelector('.species10').innerHTML = ''; document.getElementById('img10').style.opacity = '1';">
+                <p class="species10"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/220px-Sunflower_sky_backdrop.jpg" alt="Sunflower" class="galleryimg" id = "img11" title="Helianthus annuus" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Common_sunflower'" onmouseover="document.querySelector('.species11').innerHTML = 'Helianthus annuus'; document.getElementById('img11').style.opacity = '0.5';" onmouseout="document.querySelector('.species11').innerHTML = ''; document.getElementById('img11').style.opacity = '1';">
+                <p class="species11"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Hibiscus_flower_TZ.jpg/220px-Hibiscus_flower_TZ.jpg" alt="Hibiscus" class="galleryimg" id = "img12" title="Hibiscus rosa-sinensis" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Hibiscus'" onmouseover="document.querySelector('.species12').innerHTML = 'Hibiscus rosa-sinensis'; document.getElementById('img12').style.opacity = '0.5';" onmouseout="document.querySelector('.species12').innerHTML = ''; document.getElementById('img12').style.opacity = '1';">
+                <p class="species12"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Flowers_of_Hymenocallis_littoralis_%28beach_spider_lily%29_in_West_Bengal%2C_India.jpg/220px-Flowers_of_Hymenocallis_littoralis_%28beach_spider_lily%29_in_West_Bengal%2C_India.jpg" alt="Hymenocallis" class="galleryimg" id = "img13" title="Hymenocallis littoralis" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Hymenocallis_littoralis'" onmouseover="document.querySelector('.species13').innerHTML = 'Hymenocallis littoralis'; document.getElementById('img13').style.opacity = '0.5';" onmouseout="document.querySelector('.species13').innerHTML = ''; document.getElementById('img13').style.opacity = '1';">
+                <p class="species13"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Jasminum_sambac_%27Grand_Duke_of_Tuscany%27.jpg/140px-Jasminum_sambac_%27Grand_Duke_of_Tuscany%27.jpg" alt="Jasminum" class="galleryimg" id = "img14" title="Jasminum sambac" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Jasminum_sambac'" onmouseover="document.querySelector('.species14').innerHTML = 'Jasminum sambac'; document.getElementById('img14').style.opacity = '0.5';" onmouseout="document.querySelector('.species14').innerHTML = ''; document.getElementById('img14').style.opacity = '1';">
+                <p class="species14"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Tulsi_or_Tulasi_Holy_basil.jpg/220px-Tulsi_or_Tulasi_Holy_basil.jpg" alt="Tulsi" class="galleryimg" id = "img16" title="Ocimum tenuiflorum" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Ocimum_tenuiflorum'" onmouseover="document.querySelector('.species16').innerHTML = 'Ocimum tenuiflorum'; document.getElementById('img16').style.opacity = '0.5';" onmouseout="document.querySelector('.species16').innerHTML = ''; document.getElementById('img16').style.opacity = '1';">
+                <p class="species16"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Wedelia.jpg/220px-Wedelia.jpg" alt="Wedelia" class="galleryimg" id = "img17" title="Sphagneticola trilobata" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Sphagneticola_trilobata'" onmouseover="document.querySelector('.species17').innerHTML = 'Sphagneticola trilobata'; document.getElementById('img17').style.opacity = '0.5';" onmouseout="document.querySelector('.species17').innerHTML = ''; document.getElementById('img17').style.opacity = '1';">
+                <p class="species17"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Crape_Jasmine.jpg/220px-Crape_Jasmine.jpg" alt="Crape Jasmine" class="galleryimg" id = "img18" title="Tabernaemontana divaricata" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Tabernaemontana_divaricata'" onmouseover="document.querySelector('.species18').innerHTML = 'Tabernaemontana divaricata'; document.getElementById('img18').style.opacity = '0.5';" onmouseout="document.querySelector('.species18').innerHTML = ''; document.getElementById('img18').style.opacity = '1';">
+                <p class="species18"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Inniswood_-_Tagetes_erecta_1.jpg/120px-Inniswood_-_Tagetes_erecta_1.jpg" alt="Tagetes" class="galleryimg" id = "img19" title="Tagetes erecta" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Tagetes_erecta'" onmouseover="document.querySelector('.species19').innerHTML = 'Tagetes erecta'; document.getElementById('img19').style.opacity = '0.5';" onmouseout="document.querySelector('.species19').innerHTML = ''; document.getElementById('img19').style.opacity = '1';">
+                <p class="species19"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Tamarindus_indica_pods.JPG" alt="Tamarind" class="galleryimg" id = "img20" title="Tamarindus indica" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Tamarind'" onmouseover="document.querySelector('.species20').innerHTML = 'Tamarindus indica'; document.getElementById('img20').style.opacity = '0.5';" onmouseout="document.querySelector('.species20').innerHTML = ''; document.getElementById('img20').style.opacity = '1';">
+                <p class="species20"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Tecoma_capensis_2922.jpg/220px-Tecoma_capensis_2922.jpg" alt="Tecomaria" class="galleryimg" id = "img21" title="Tecomaria capensis" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Tecomaria_capensis'" onmouseover="document.querySelector('.species21').innerHTML = 'Tecomaria capensis'; document.getElementById('img21').style.opacity = '0.5';" onmouseout="document.querySelector('.species21').innerHTML = ''; document.getElementById('img21').style.opacity = '1';">
+                <p class="species21"></p>
+                </div>
+
+            <div class = "gi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Plumeria_alba2709449426.jpg/1024px-Plumeria_alba2709449426.jpg" alt="Alba" class="galleryimg" id = "img22" title="Ficus Benjaminus" onclick="window.location.href = 'https:/en.wikipedia.org/wiki/Ficus'" onmouseover="document.querySelector('.species22').innerHTML = 'Ficus Benjaminus'; document.getElementById('img22').style.opacity = '0.5';" onmouseout="document.querySelector('.species22').innerHTML = ''; document.getElementById('img22').style.opacity = '1';">
+                <p class="species22"></p>
+                </div>
+          </div>
+
+    </div>
+
+    </div>
+
+
+    
+  </body>
+  <footer>
+    <img src="footer.jpg" alt="footer" id="footerimg">
+    <div id="footertext">
+  
+  
+  <br>
+  <div class="row">
+  <!--Adding the links to the other pages as buttons arranged on the 60% of the left side in two columns-->
+  <div class="column">
+      <button onclick="window.location.href = 'Flowers_Of_IITGN.html';" id="Gallery2Btn">Home</button>
+      <!-- <button onclick="window.location.href = 'SBN.html';" id="SBN2Btn">Search by Name</button>
+      <button onclick="window.location.href = 'ChatBot.html';" id="ChatBot2Btn">Flower ChatBot</button>
+      <button onclick="window.location.href = 'FlowerVision.html';" id="FlowerVision2Btn">Flower Vision</button> -->
+      <button onclick="window.location.href = 'Quiz.html';" id="Gallery2Btn">Flower Quiz</button>
+  </div>
+  <div class="column">
+      <!--Adding the logo of logo2.png on the right side 40% area-->
+      <img src="logo2.jpeg" alt="logo2ft" id="logo2ft">
+      <p>Flowers of IITGN</p>
+  
+  </div>
+  </div>
+  <div id="ft2">
+      <br>
+      <p>PMDCB Lab, IIT Gandhinagar © 2024</p>
+  
+  </div>
+    </div>
+  
+  </footer>
+  </html>
+  
+  

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Main.css">
+    <!--Include Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <title>Flowers of IITGN</title>
+    
+
+    
+</head>
+<body>
+    <header>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Gallery.html">Gallery</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="SBN.html">Search by Name</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ChatBot.html">Flower ChatBot</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="Quiz.html">Flower Quiz</a>
+            </li>
+          </ul>
+    </header>
+    
+    <div id = "titleblock">
+        <div class="row">
+        <img src="logo.png" alt="Logo" id="logo">
+        <h1>   Flowers of IITGN    </h1>
+        <img src="logo3.jpg" alt="Logo2" id="logo2">
+    </div>  
+    </div>
+    <div id="description">
+        <h2>Introduction</h2>
+        <p>Flowers of IITGN is a Web Application developed by PMDCB Lab at IIT Gandhinagar to spread awareness about the huge biodiversity and variety of flower species present in the campus. This application comes with a search by name featue where we can select a flower by its species name. We also have a Gallery which displays the variety of flowers present in the campus. Apart from these, there is also a the feature of ientifying the flower just by its image. And finally we will have a Flower ChatBot, which will always be ready to let us explore more about the Flowers of IITGN.</p>
+    </div>
+    <div>
+        <button onclick="window.location.href = 'Gallery.html';" id="GalleryBtn">Gallery</button>
+        <!-- <button onclick="window.location.href = 'SBN.html';" id="SBNBtn">Search by Name</button>
+        <button onclick="window.location.href = 'ChatBot.html';" id="ChatBotBtn">Flower ChatBot</button> -->
+        <button onclick="window.location.href = 'Quiz.html';" id="FlowerVisionBtn">Flower Quiz</button>
+                
+    </div>
+
+    </body>
+    <form action="SEMDB.php"></form>
+
+
+
+
+
+
+  </body>
+<footer>
+  <img src="footer.jpg" alt="footer" id="footerimg">
+  <div id="footertext">
+
+
+<br>
+<div class="row">
+<!--Adding the links to the other pages as buttons arranged on the 60% of the left side in two columns-->
+<div class="column">
+    <button onclick="window.location.href = 'Gallery.html';" id="Gallery2Btn">Gallery</button>
+    <!-- <button onclick="window.location.href = 'SBN.html';" id="SBN2Btn">Search by Name</button>
+    <button onclick="window.location.href = 'ChatBot.html';" id="ChatBot2Btn">Flower ChatBot</button> -->
+    <button onclick="window.location.href = 'FlowerVision.html';" id="FlowerVision2Btn">Flower Quiz</button>
+</div>
+<div class="column">
+    <!--Adding the logo of logo2.png on the right side 40% area-->
+    <img src="logo2.jpeg" alt="logo2ft" id="logo2ft">
+    <p>Flowers of IITGN</p>
+
+</div>
+</div>
+<div id="ft2">
+    <br>
+    <p>PMDCB Lab, IIT Gandhinagar © 2024</p>
+
+</div>
+  </div>
+
+</footer>
+</html>
+

@@ -1,0 +1,317 @@
+* {
+    box-sizing: border-box;
+  }
+
+h1 {
+    font-family: 'Times New Roman', serif;
+}
+
+img{
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+#titleblock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    background-color: aqua;
+}
+
+#titleblock h1{
+    font-size: 3em;
+    color: black;
+    text-align: center;
+}
+
+#titleblock #logo{
+    width: 10%;
+    height: 10%;
+    border-radius: 100%;
+    margin-left: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#titleblock #logo2{
+    width: 10%;
+    height: 10%;
+    border-radius: 100%;
+    margin-right: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#titleblock h1{
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    background-color: lightsalmon;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-shadow: 0 0 100px 100px rgba(247, 250, 252, 0.8);
+    border-radius: 20px;
+}
+
+#AboutBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2%;
+    margin-right:5%;
+}
+
+#AboutBtn:hover{
+    background-color:yellow;
+    color:red;
+}
+
+/* 
+<button onclick="window.location.href = 'Gallery.html';" id="GalleryBtn">Gallery</button>
+<button onclick="window.location.href = 'SBN.html';" id="SBNBtn">Search by Name</button>
+<button onclick="window.location.href = 'ChatBot.html';" id="ChatBotBtn">Flower ChatBot</button>
+<button onclick="window.location.href = 'FlowerVision.html';" id="FlowerVisionBtn">Flower Vision</button> */
+
+#GalleryBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2%;
+    margin-right:5%;
+}
+
+#GalleryBtn:hover{
+    background-color:yellow;
+    color:red;
+}
+
+#SBNBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2%;
+    margin-right:5%;
+}
+
+#SBNBtn:hover{
+    background-color:yellow;
+    color:red;
+}
+
+#ChatBotBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2%;
+    margin-right:5%;
+}
+
+#ChatBotBtn:hover{
+    background-color:yellow;
+    color:red;
+}
+
+#FlowerVisionBtn{
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2%;
+    margin-right:5%;
+}
+
+#FlowerVisionBtn:hover{
+    background-color:yellow;
+    color:red;
+}
+
+
+#footerimg{
+    width: 100%;
+    height: 50%;
+    border-radius: 0%;
+}
+
+#footertext{
+    background-color: #77B023;
+}
+
+#Gallery2Btn{
+    background-color: #e48e0e;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 25%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-right:5%;
+    margin-bottom: 1%;
+}
+
+#Gallery2Btn:hover{
+    color:yellow;
+    background-color:rgb(195, 0, 255);
+}
+
+#SBN2Btn{
+    background-color: #e48e0e;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 25%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-right:5%;
+    margin-bottom: 1%;
+}
+
+#SBN2Btn:hover{
+    color:yellow;
+    background-color:rgb(195, 0, 255);
+}
+
+#ChatBot2Btn{
+    background-color: #e48e0e;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 25%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-right:5%;
+    margin-bottom: 1%;
+}
+
+#ChatBot2Btn:hover{
+    color:yellow;
+    background-color:rgb(195, 0, 255);
+}
+
+#FlowerVision2Btn{
+    background-color: #e48e0e;
+    color: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 25%;
+    margin-left: 10%;
+    border:black;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-right:5%;
+    margin-bottom: 1%;
+}
+
+#FlowerVision2Btn:hover{
+    color:yellow;
+    background-color:rgb(195, 0, 255);
+}
+
+
+
+.column {
+    float: left;
+    width: 50%;
+  }
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+#logo2ft{
+    width: 15%;
+    height: 70%;
+    border-radius: 10%;
+    margin-left: 42.5%;
+}
+
+.column p{
+    font-size: large;
+    color: black;
+    text-align: center;
+}
+
+#footertext p{
+    font-size: large;
+    color: black;
+    text-align: center;
+}
+
+#ft2 p{
+    font-size: small;
+    color: black;
+    text-align: center;
+}
