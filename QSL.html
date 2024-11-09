@@ -1,84 +1,487 @@
-QSL
-### User Manual
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QSL</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1{
+            color: #333;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: aqua;
+        }
+        h2{
+            color: #555;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: orange;
+        }
+        p{
+            color: #777;
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        ul{
+            color: #777;
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        h3{
+            color: #555;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: palegreen;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table{
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            border: 2px solid black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        th, td{
+            border: 0.5px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quantum Simulator Language</h1>
+    <h3>Contents</h3>
+    <ul style="background-color: yellow; color: tomato; width: 40%; margin-left: auto; margin-right: auto;">    
+        <li><a href="#Description">Description</a></li>
+        <li><a href="#Instructions">Instructions</a></li>
+        <li><a href="#Processor">Processor Design for Simulating</a></li>
+        <li><a href="#Machine">Machine Code</a></li>
+        <li><a href="#Simulator">Simulator</a></li>
+        <li><a href="#Benchmarks">Benchmarks</a></li>
+        <li><a href="#Downloads">Downloads</a></li>
+    </ul>
 
-- Note
-    
-    Quantities written in triangular brackets are variables to be assigned values by the user.
-    
-- **Quantum Operations (Q type)**
-    - `RESET(<q>)` : Collapses the wave-function so that qubit number $q$ goes to the pure state $\ket 0$
-    - `H(<q>)`  : Hadamard gate on qubit number $q$
-    - `T(<q>)`  : $T$ gate applied on qubit number $q$
-    - `X(<q>)`  : Pauli-X gate on qubit number $q$
-    - `Y(<q>)`  : Pauli-Y gate on qubit number $q$
-    - `Z(<q>)`  : Pauli-Z gate on qubit number $q$
-    - `S(<q>)`  : $S$ gate on qubit number $q$
-    - `MEASURE(<q>)`  : Collapses wavefunction so that qubit number $q$ enters a pure state, and stores the result (0 or 1) in the 0 index bit of register 0 (or s0)
-    - `CNOT(<qs>,<qt>)`  : Applies CNOT gate on qubits qs and qt where qt is the control qubit, and qs is the controlled qubit (one that changes its state).
-    - `CZ(<qs>,<qt>)`  : Controlled Z gate on qs , with qt as control qubit.
-    - `SWAP(<qs>,<qt>)` : Swaps the states of qubits qs and qt .
-- **Classical Logical Operations (R type)**
-    - `AND(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \land \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
-    - `IOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \lor \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
-    - `XOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \oplus \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
-    - `NOT(<rs>,<sb>)` : Stores the result of $\neg \text{rs}[\text{sb}]$ in bit $\text{rs[sb]}$ .
-    - `NOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\neg(\text{rs}[\text{sb}] \lor \text{rt}[\text{tb}])$ in bit $\text{rs[sb]}$ .
-    - `MOV(<rs>,<sb>,<rt>,<tb>)` : Stores the value of $\text{rs}[\text{sb}]$ in bit $\text{rs[sb]}$ .
-    - `SET(<rs>,<sb>)` : Sets the bit $\text{rs[sb]}$ to 1
-    - `CLR(<rs>,<sb>)` : Sets the bit $\text{rs[sb]}$ to 0
-- **Control Flow instructions**
-    - `JPN(<rs>,<sb>,<label>)` : Jumps to instruction labelled `<label>` if $\text{rs[sb]}$ has value 0
-    - `JPP(<rs>,<sb>,<label>)` : Jumps to instruction labelled `<label>` if $\text{rs[sb]}$ has value 1
-    - `JMP(<label>)` : Jumps to instruction labelled `<label>`
-    - Example
-        
-        ```nasm
-        JMP(l1) # This jumps to label l1
-        l1:MOV(0,0,1,1)
-        ```
-        
-- **Data transfer instructions**
-    - `LDB(<rs>,<sb>,<rt>,<imm>)` : 
-    Let $x$ be the unsigned value of register rt added to the value of the 6 bit field imm, interpreted as a signed number . Then this instruction sets $\text{rs[sb]}$ to the value of bit $x$ of data memory .
-    - `STB(<rs>,<sb>,<rt>,<imm>)` : Similar to LDB, except bit $x$ of data memory is set to the value of $\text{rs[sb]}$ .
-    - Example
-        
-        ```nasm
-        LDB(0,0,2,-1) # This causes s0[0] to be set to C[s2+(-1)]
-        ```
-        
-- **Special Instructions**
-    - `NOP()`  : Does nothing
-- **Comments**
-    
-    On every line, everything after the first ‘#’ character, including the ‘#’ character itself, is disregarded during compilation.
-    
-    Example:
-    
-    ```python
-    MOV(0,0,1,1) # This text is going to be disregarded
-    ```
-    
-- **Labels**
-    
-    Everything before the first ‘:’ character , after discarding the comment is the first label. Discard that (including ‘:’) and repeat the process to get the second label, and so on.
-    
-    - Example
-        
-        ```nasm
+    <h2 id="Description">Description</h2>
+    <p>QSL is a low level assembly language for quantum computers. It is designed to be a simple language that can be used to write quantum circuits and classical logic. The language is designed to be simple and easy to understand, and is meant to be used as a stepping stone to more complex quantum programming languages.</p>
+    <p>This language was first developed by the Quantum Innovators group as a course project in the Computer Organisation and Architecture Course at IIT Gandhinagar, India.</p>
+    <p>This language is also accompanied by a simulator, whose detailes will be discussed in the later sections.</p>
+
+    <h2 id="Instruction">Instructions</h2>
+    <p>QSL has a set of instructions that can be used to write quantum programs and classical programs. The basic instructions are divided into several categories:</p>
+    <ul>
+        <li>Quantum Operations (Q type)</li>
+        <li>Classical Logical Operations (R type)</li>
+        <li>Control Flow instructions</li>
+        <li>Data transfer instructions</li>
+        <li>Special Instructions</li>
+        <li>Comments</li>
+        <li>Labels</li>
+    </ul>
+
+    <h3>Quantum Operations (Q type)</h3>
+    <p>Quantum operations are used to manipulate qubits in a quantum circuit. The following quantum operations are supported:</p>
+    <ul>
+        <li>RESET(q) : Collapses the wave-function so that qubit number q goes to the pure state |0></li>
+        <li>H(q) : Hadamard gate on qubit number q</li>
+        <li>T(q) : T gate applied on qubit number q</li>
+        <li>X(q) : Pauli-X gate on qubit number q</li>
+        <li>Y(q) : Pauli-Y gate on qubit number q</li>
+        <li>Z(q) : Pauli-Z gate on qubit number q</li>
+        <li>S(q) : S gate on qubit number q</li>
+        <li>MEASURE(q) : Collapses wavefunction so that qubit number q enters a pure state, and stores the result (0 or 1) in the 0 index bit of register 0 (or s0)</li>
+        <li>CNOT(qs,qt) : Applies CNOT gate on qubits qs and qt where qt is the control qubit, and qs is the controlled qubit (one that changes its state).</li>
+        <li>CZ(qs,qt) : Controlled Z gate on qs , with qt as control qubit.</li>
+        <li>SWAP(qs,qt) : Swaps the states of qubits qs and qt .</li>
+    </ul>
+
+    <h3>Classical Logical Operations (R type)</h3>
+    <p>Classical logical operations are used to manipulate classical bits in a classical circuit. The following classical logical operations are supported:</p>
+    <ul>
+        <li>AND(rs,sb,rt,tb) : Stores the result of rs[sb] AND rt[tb] in bit rs[sb] .</li>
+        <li>IOR(rs,sb,rt,tb) : Stores the result of rs[sb] OR rt[tb] in bit rs[sb] .</li>
+        <li>XOR(rs,sb,rt,tb) : Stores the result of rs[sb] XOR rt[tb] in bit rs[sb] .</li>
+        <li>NOT(rs,sb) : Stores the result of NOT rs[sb] in bit rs[sb] .</li>
+        <li>NOR(rs,sb,rt,tb) : Stores the result of NOR rs[sb] OR rt[tb] in bit rs[sb] .</li>
+        <li>MOV(rs,sb,rt,tb) : Stores the value of rs[sb] in bit rs[sb] .</li>
+        <li>SET(rs,sb) : Sets the bit rs[sb] to 1</li>
+        <li>CLR(rs,sb) : Sets the bit rs[sb] to 0</li>
+    </ul>
+
+    <h3>Control Flow instructions</h3>
+    <p>Control flow instructions are used to control the flow of the program. The following control flow instructions are supported:</p>
+    <ul>
+        <li>JPN(rs,sb,label) : Jumps to instruction labelled label if rs[sb] has value 0</li>
+        <li>JPP(rs,sb,label) : Jumps to instruction labelled label if rs[sb] has value 1</li>
+        <li>JMP(label) : Jumps to instruction labelled label</li>
+    </ul>
+
+    <h3>Data transfer instructions</h3>
+    <p>Data transfer instructions are used to transfer data between registers and memory. The following data transfer instructions are supported:</p>
+    <ul>
+        <li>LDB(rs,sb,rt,imm) : Let x be the unsigned value of register rt added to the value of the 6 bit field imm, interpreted as a signed number . Then this instruction sets rs[sb] to the value of bit x of data memory .</li>
+        <li>STB(rs,sb,rt,imm) : Similar to LDB, except bit x of data memory is set to the value of rs[sb] .</li>
+    </ul>
+
+    <h3>Special Instructions</h3>
+    <p>Special instructions are used for special purposes. The following special instructions are supported:</p>
+    <ul>
+        <li>NOP() : Does nothing</li>
+        <li>HLT() : Stops (Halts) the program. This is automatically added at the end.</li>
+    </ul>
+
+    <h3>Comments</h3>
+    <p>On every line, everything after the first ‘#’ character, including the ‘#’ character itself, is disregarded during compilation.</p>
+    <p>Example:</p>
+    <pre>
+        MOV(0,0,1,1) # This text is going to be disregarded
+    </pre>
+
+    <h3>Labels</h3>
+    <p>Everything before the first ‘:’ character , after discarding the comment is the first label. Discard that (including ‘:’) and repeat the process to get the second label, and so on.</p>
+    <p>Example:</p>
+    <pre>
         label1:NOP()
         label2:label3:NOP()
-        ```
+    </pre>
+
+    <h2 id="Processor">Processor Design for Simulating</h2>
+    <p>The processor that we have designed this ISA for is a quantum processor with the following specifications:</p>
+    <ul>
+        <li>Number of Qubits: 5</li>
+        <li>Possible Number of Quantum States: 32</li>
+        <li>Qubit Topology: Fully Connected</li>
+        <li>Number of Classical Registers: 7</li>
+        <li>Number of Buffer Registers: 1</li>
+        <li>Number of Addressable Secondary Memory Locations: 24</li>
+        <li>Size of Classical Registers: 32 Bits</li>
+        <li>Size of Buffer Register: 32 Bits</li>
+        <li>Size of Memory Word: 32 Bits</li>
+        <li>Maximum Number of Instruction: 1024 (in 2024 version)</li>
+        <li>Size of Instructions: 18 Bits</li>
+        <li>Secondary Data Memory: 24*32 Bits = 96 Bytes</li>
+    </ul>
+    <p>Other Points</p>
+    <ul>
+        <li>The Buffer Register is the place the Measurement value will be stored. It is indexed as $0, the 0th register.</li>
+        <li>The Measurement by default will be stored at its 0th bit.</li>
+        <li>This follows the Princeton Type Architecture, that is, the Data Memory is separate from the instruction Memory.</li>
+        <li>Here, the register file also acts as a bit addressable data memory (as of 2024 Version 1).</li>
+        <li>There are 8 actual registers ($0,$1…$7) which are addressable using fields rs and rt.</li>
+        <li>The secondary memory, which is reprsented as “pseudo” registers ($8 to $31) which are accessible only using LDB and STB instructions. We are calling them “registers” just for our ease, but each of them is just a block of 32 bits in the data memory and nothing more.</li>
+    </ul>
         
-    
-- The Classical Memory
-    
-    Here, the register file also acts as a bit addressable data memory. 
-    
-    There are 8 actual registers (s0,s1…s7) which are addressable using fields rs and rt 
-    
-    Moreover, there are some “pseudo” registers (s8 to s31) which are accessible only using LDB and STB instructions. We are calling them “registers” just for our ease, but each of them is just a block of 32 bits in the data memory and nothing more.
-    
-    We can have up to $2^{32}$ bits of memory, out of which, first 256 bits will be used for registers. 
-    
-    All the measurements are stored in the 0th bit of memory, which is s0[0] .
+<h2 id="Machine">Machine Code</h2>
+
+<p>The Machine Code is of 18 bits in total. Since the instructions are divided based on their types, the machine codes and their formats are also based on that. The opcode, which corresponds to the first three bits of tthe instruction machine code decides whether the instruction is Q-type, R-type, etc. The next 15 bits depend on the type of instruction for thei format. The table for the types of instructions with their respective opcodes is as given below:</p>
+
+<table>
+    <tr>
+        <th>Instruction Type</th>
+        <th>Opcode - first 3 bits</th>
+    </tr>
+    <tr>
+        <td>Q</td>
+        <td>000</td>
+    </tr>
+    <tr>
+        <td>R (classical)</td>
+        <td>001</td>
+    </tr>
+    <tr>
+        <td>JPN</td>
+        <td>010</td>
+    </tr>
+    <tr>
+        <td>JPP</td>
+        <td>011</td>
+    </tr>
+    <tr>
+        <td>JMP</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>Load</td>
+        <td>101</td>
+    </tr>
+    <tr>
+        <td>Store</td>
+        <td>110</td>
+    </tr>
+    <tr>
+        <td>NOP/HLT</td>
+        <td>111</td>
+    </tr>
+</table>
+
+<h3>Q Type Instructions</h3>
+<p>For Q Type Instructions, the instruction is of 18 bits. The first 3 bits are the opcode, the next 3 bits are the qubit number, the next 3 bits are 000, the next 3 bits are the target qubit number, and the last 6 bits are the function code. The table for the function codes is as given below:</p>
+<!-- | Opcode | qs | 000 | qt | func |
+| 3 | 3 | 3 | 3 | 3 | 6 | -->
+<table>
+    <tr>
+        <th>Part of Machine Code</th>
+        <th>Opcode</th>
+        <th>qs</th>
+        <th>000</th>
+        <th>qt</th>
+        <th>Function Code</th>
+    </tr>
+        <td>Number of Bits Taken</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>6 Bits</td>
+    </tr>
+</table>
+
+<p>The meanings of the individual parts is as follows:</p>
+<ul>
+    <li>Opcode: The first 3 bits of the instruction, which is 000 for Q type instructions.</li>
+    <li>qs: The first qubit number on which the operation is to be performed.</li>
+    <li>000: A 3 bit field which is always 000.</li>
+    <li>qt: The second qubit number for the operation. It is 000 for single qubit operations.</li>
+    <li>Function Code: The 6 bit function code for the operation.</li>
+</ul>
+<p>The table for the function codes is as given below:</p>
+<table>
+    <tr>
+        <th>Instruction</th>
+        <th>6 Bit Function Code</th>
+    </tr>
+    <tr>
+        <td>RESET</td>
+        <td>000000</td>
+    </tr>
+    <tr>
+        <td>H</td>
+        <td>000001</td>
+    </tr>
+    <tr>
+        <td>T</td>
+        <td>000010</td>
+    </tr>
+    <tr>
+        <td>X</td>
+        <td>000011</td>
+    </tr>
+    <tr>
+        <td>Y</td>
+        <td>000100</td>
+    </tr>
+    <tr>
+        <td>Z</td>
+        <td>000101</td>
+    </tr>
+    <tr>
+        <td>S</td>
+        <td>000110</td>
+    </tr>
+    <tr>
+        <td>MEASURE</td>
+        <td>000111</td>
+    </tr>
+    <tr>
+        <td>CNOT</td>
+        <td>001000</td>
+    </tr>
+    <tr>
+        <td>CZ</td>
+        <td>001001</td>
+    </tr>
+    <tr>
+        <td>SWAP</td>
+        <td>001010</td>
+    </tr>
+</table>
+
+<h3>R Type Instructions</h3>
+<p>For R Type Instructions, the instruction is of 18 bits. The first 3 bits are the opcode, the next 3 bits are the register number, the next 3 bits are the bit number, the next 3 bits are the target register number, the next 3 bits are the target bit number, and the last 3 bits are the function code. The table for the function codes is as given below:</p>
+<!-- | Opcode | rs | sb | rt | tb | func |
+| 3 | 3 | 3 | 3 | 3 | 3 | 3 | -->
+<table>
+    <tr>
+        <th>Part of Machine Code</th>
+        <th>Opcode</th>
+        <th>rs</th>
+        <th>sb</th>
+        <th>rt</th>
+        <th>tb</th>
+        <th>Function Code</th>
+    </tr>
+        <td>Number of Bits Taken
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+    </tr>
+</table>
+
+<p>The meanings of the individual parts is as follows:</p>
+<ul>
+    <li>Opcode: The first 3 bits of the instruction, which is 001 for R type instructions.</li>
+    <li>rs: The first register number on which the operation is to be performed.</li>
+    <li>sb: The bit number in the first register on which the operation is to be performed.</li>
+    <li>rt: The second register number for the operation.</li>
+    <li>tb: The bit number in the second register on which the operation is to be performed.</li>
+    <li>Function Code: The 3 bit function code for the operation.</li>
+</ul>
+<p>The table for the function codes is as given below:</p>
+<table>
+    <tr>
+        <th>Instruction</th>
+        <th>3 Bit Function Code</th>
+    </tr>
+    <tr>
+        <td>AND</td>
+        <td>000</td>
+    </tr>
+    <tr>
+        <td>IOR</td>
+        <td>001</td>
+    </tr>
+    <tr>
+        <td>XOR</td>
+        <td>010</td>
+    </tr>
+    <tr>
+        <td>NOT</td>
+        <td>011</td>
+    </tr>
+    <tr>
+        <td>NOR</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>MOV</td>
+        <td>101</td>
+    </tr>
+    <tr>
+        <td>SET</td>
+        <td>110</td>
+    </tr>
+    <tr>
+        <td>CLR</td>
+        <td>111</td>
+    </tr>
+</table>
+
+<h3>Control Flow Instructions</h3>
+<p>For Control Flow Instructions, the instruction is of 18 bits. The first 3 bits are the opcode, the next 3 bits are the register number, the next 3 bits are the bit number, and the last 9 bits are the label. The table for the function codes is as given below:</p>
+<!-- | Opcode | rs | sb | imm |
+| 3 | 3 | 3 | 3 | 9 | -->
+<table>
+    <tr>
+        <th>Part of Machine Code</th>
+        <th>Opcode</th>
+        <th>rs</th>
+        <th>sb</th>
+        <th>imm</th>
+    </tr>
+        <td>Number of Bits Taken
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>9 Bits</td>
+    </tr>
+</table>
+
+<p>The meanings of the individual parts is as follows:</p>
+<ul>
+    <li>Opcode: The first 3 bits of the instruction, which is 010 for JPN type instructions, 011 for JPP type instructions, and 100 for JMP type instructions.</li>
+    <li>rs: The register number on which the operation is to be performed.</li>
+    <li>sb: The bit number in the register on which the operation is to be performed.</li>
+    <li>imm: The label (immediate) to which the control flow is to be transferred.</li>
+</ul>
+
+<h3>Data Transfer Instructions</h3>
+<p>For Data Transfer Instructions, the instruction is of 18 bits. The first 3 bits are the opcode, the next 3 bits are the register number, the next 3 bits are the bit number, the next 3 bits are the target register number, the next 3 bits are the target bit number, and the last 3 bits are the immediate value. The table for the function codes is as given below:</p>
+<!-- | Opcode | rs | sb | rt | tb | imm |
+| 3 | 3 | 3 | 3 | 3 | 3 | 3 | -->
+<table>
+    <tr>
+        <th>Part of Machine Code</th>
+        <th>Opcode</th>
+        <th>rs</th>
+        <th>sb</th>
+        <th>rt</th>
+        <th>tb</th>
+        <th>imm</th>
+    </tr>
+        <td>Number of Bits Taken
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+        <td>3 Bits</td>
+    </tr>
+</table>
+
+<p>The meanings of the individual parts is as follows:</p>
+<ul>
+    <li>Opcode: The first 3 bits of the instruction, which is 101 for Load type instructions and 110 for Store type instructions.</li>
+    <li>rs: The register number from which the data is to be loaded or stored.</li>
+    <li>sb: The bit number in the register from which the data is to be loaded or stored.</li>
+    <li>rt: The register number to which the data is to be loaded or stored.</li>
+    <li>tb: The bit number in the register to which the data is to be loaded or stored.</li>
+    <li>imm: The immediate value to be loaded or stored.</li>
+</ul>
+
+<h3>Special Instructions</h3>
+<p>For Special Instructions, the instruction is of 18 bits. The first 3 bits are the opcode, and the next 15 bits are Function Code. The table for the function codes is as given below:</p>
+<!-- | Opcode | 0 |
+| 3 | 15 | -->
+<table>
+    <tr>
+        <th>Part of Machine Code</th>
+        <th>Opcode</th>
+        <th>Function Code</th>
+    </tr>
+        <td>Number of Bits Taken
+        <td>3 Bits</td>
+        <td>15 Bits</td>
+    </tr>
+</table>
+
+<p>The meanings of the individual parts is as follows:</p>
+<ul>
+    <li>Opcode: The first 3 bits of the instruction, which is 111 for NOP and HLT type instructions.</li>
+    <li>Function Code: The 15 bit function code for the operation.</li>
+</ul>
+
+<table>
+    <tr>
+        <th>Instruction</th>
+        <th>Function Code</th>
+    </tr>
+    <tr>
+        <td>NOP</td>
+        <td>000000000000000</td>
+    </tr>
+    <tr>
+        <td>HLT</td>
+        <td>111111111111111</td>
+    </tr>
+</table>
+
+<h2 id="Simulator">Simulator</h2>
+<p>
+</p>
+
+<h2 id="Benchmarks">Benchmarks</h2>
+
+<h2 id="Downloads">Downloads</h2>
+
+
+</body>
+</html>
