@@ -1,1 +1,84 @@
 QSL
+### User Manual
+
+- Note
+    
+    Quantities written in triangular brackets are variables to be assigned values by the user.
+    
+- **Quantum Operations (Q type)**
+    - `RESET(<q>)` : Collapses the wave-function so that qubit number $q$ goes to the pure state $\ket 0$
+    - `H(<q>)`  : Hadamard gate on qubit number $q$
+    - `T(<q>)`  : $T$ gate applied on qubit number $q$
+    - `X(<q>)`  : Pauli-X gate on qubit number $q$
+    - `Y(<q>)`  : Pauli-Y gate on qubit number $q$
+    - `Z(<q>)`  : Pauli-Z gate on qubit number $q$
+    - `S(<q>)`  : $S$ gate on qubit number $q$
+    - `MEASURE(<q>)`  : Collapses wavefunction so that qubit number $q$ enters a pure state, and stores the result (0 or 1) in the 0 index bit of register 0 (or s0)
+    - `CNOT(<qs>,<qt>)`  : Applies CNOT gate on qubits qs and qt where qt is the control qubit, and qs is the controlled qubit (one that changes its state).
+    - `CZ(<qs>,<qt>)`  : Controlled Z gate on qs , with qt as control qubit.
+    - `SWAP(<qs>,<qt>)` : Swaps the states of qubits qs and qt .
+- **Classical Logical Operations (R type)**
+    - `AND(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \land \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
+    - `IOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \lor \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
+    - `XOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\text{rs}[\text{sb}] \oplus \text{rt}[\text{tb}]$ in bit $\text{rs[sb]}$ .
+    - `NOT(<rs>,<sb>)` : Stores the result of $\neg \text{rs}[\text{sb}]$ in bit $\text{rs[sb]}$ .
+    - `NOR(<rs>,<sb>,<rt>,<tb>)` : Stores the result of $\neg(\text{rs}[\text{sb}] \lor \text{rt}[\text{tb}])$ in bit $\text{rs[sb]}$ .
+    - `MOV(<rs>,<sb>,<rt>,<tb>)` : Stores the value of $\text{rs}[\text{sb}]$ in bit $\text{rs[sb]}$ .
+    - `SET(<rs>,<sb>)` : Sets the bit $\text{rs[sb]}$ to 1
+    - `CLR(<rs>,<sb>)` : Sets the bit $\text{rs[sb]}$ to 0
+- **Control Flow instructions**
+    - `JPN(<rs>,<sb>,<label>)` : Jumps to instruction labelled `<label>` if $\text{rs[sb]}$ has value 0
+    - `JPP(<rs>,<sb>,<label>)` : Jumps to instruction labelled `<label>` if $\text{rs[sb]}$ has value 1
+    - `JMP(<label>)` : Jumps to instruction labelled `<label>`
+    - Example
+        
+        ```nasm
+        JMP(l1) # This jumps to label l1
+        l1:MOV(0,0,1,1)
+        ```
+        
+- **Data transfer instructions**
+    - `LDB(<rs>,<sb>,<rt>,<imm>)` : 
+    Let $x$ be the unsigned value of register rt added to the value of the 6 bit field imm, interpreted as a signed number . Then this instruction sets $\text{rs[sb]}$ to the value of bit $x$ of data memory .
+    - `STB(<rs>,<sb>,<rt>,<imm>)` : Similar to LDB, except bit $x$ of data memory is set to the value of $\text{rs[sb]}$ .
+    - Example
+        
+        ```nasm
+        LDB(0,0,2,-1) # This causes s0[0] to be set to C[s2+(-1)]
+        ```
+        
+- **Special Instructions**
+    - `NOP()`  : Does nothing
+- **Comments**
+    
+    On every line, everything after the first ‘#’ character, including the ‘#’ character itself, is disregarded during compilation.
+    
+    Example:
+    
+    ```python
+    MOV(0,0,1,1) # This text is going to be disregarded
+    ```
+    
+- **Labels**
+    
+    Everything before the first ‘:’ character , after discarding the comment is the first label. Discard that (including ‘:’) and repeat the process to get the second label, and so on.
+    
+    - Example
+        
+        ```nasm
+        label1:NOP()
+        label2:label3:NOP()
+        ```
+        
+    
+- The Classical Memory
+    
+    Here, the register file also acts as a bit addressable data memory. 
+    
+    There are 8 actual registers (s0,s1…s7) which are addressable using fields rs and rt 
+    
+    Moreover, there are some “pseudo” registers (s8 to s31) which are accessible only using LDB and STB instructions. We are calling them “registers” just for our ease, but each of them is just a block of 32 bits in the data memory and nothing more.
+    
+    We can have up to $2^{32}$ bits of memory, out of which, first 256 bits will be used for registers. 
+    
+    All the measurements are stored in the 0th bit of memory, which is s0[0] .
