@@ -53,6 +53,12 @@
             padding: 10px;
             text-align: center;
         }
+        .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
     </style>
 </head>
 <body>
@@ -159,27 +165,27 @@
         <li>Qubit Topology: Fully Connected</li>
         <li>Number of Classical Registers: 7</li>
         <li>Number of Buffer Registers: 1</li>
-        <li>Number of Addressable Secondary Memory Locations: 24</li>
+        <li>Number of Addressable Primary Memory Locations: 24</li>
         <li>Size of Classical Registers: 32 Bits</li>
         <li>Size of Buffer Register: 32 Bits</li>
         <li>Size of Memory Word: 32 Bits</li>
         <li>Maximum Number of Instruction: 1024 (in 2024 version)</li>
         <li>Size of Instructions: 18 Bits</li>
-        <li>Secondary Data Memory: 24*32 Bits = 96 Bytes</li>
+        <li>Primary Data Memory: 24*32 Bits = 96 Bytes</li>
     </ul>
     <p>Other Points</p>
     <ul>
         <li>The Buffer Register is the place the Measurement value will be stored. It is indexed as $0, the 0th register.</li>
         <li>The Measurement by default will be stored at its 0th bit.</li>
-        <li>This follows the Princeton Type Architecture, that is, the Data Memory is separate from the instruction Memory.</li>
+        <li>This follows the Harvard Type Architecture, that is, the Data Memory is separate from the instruction Memory.</li>
         <li>Here, the register file also acts as a bit addressable data memory (as of 2024 Version 1).</li>
         <li>There are 8 actual registers ($0,$1…$7) which are addressable using fields rs and rt.</li>
-        <li>The secondary memory, which is reprsented as “pseudo” registers ($8 to $31) which are accessible only using LDB and STB instructions. We are calling them “registers” just for our ease, but each of them is just a block of 32 bits in the data memory and nothing more.</li>
+        <li>The primary memory, which is reprsented as “pseudo” registers ($8 to $31) which are accessible only using LDB and STB instructions. We are calling them “registers” just for our ease, but each of them is just a block of 32 bits in the data memory and nothing more.</li>
     </ul>
         
 <h2 id="Machine">Machine Code</h2>
 
-<p>The Machine Code is of 18 bits in total. Since the instructions are divided based on their types, the machine codes and their formats are also based on that. The opcode, which corresponds to the first three bits of tthe instruction machine code decides whether the instruction is Q-type, R-type, etc. The next 15 bits depend on the type of instruction for thei format. The table for the types of instructions with their respective opcodes is as given below:</p>
+<p>The Machine Code is of 18 bits in total. Since the instructions are divided based on their types, the machine codes and their formats are also based on that. The opcode, which corresponds to the first three bits of tthe instruction machine code decides whether the instruction is Q-type, R-type, etc. The next 15 bits depend on the type of instruction for their format. We Big Endian Notation, that is, the MSB is on left. The table for the types of instructions with their respective opcodes is as given below:</p>
 
 <table>
     <tr>
@@ -475,13 +481,58 @@
 </table>
 
 <h2 id="Simulator">Simulator</h2>
-<p>
-</p>
+<p>We have also developed a simulator for the QSL Language that allows the user to write programs in QSL assembly language and visualise the execution with respect to the variation in the quantum states, memory and the sequence of instructions executed.</p>
+<img class="center" style=" width: 60%; margin-left: auto; margin-right: auto;" src="https://github.com/user-attachments/assets/47258884-4f67-41e1-b610-9622f2213a4c" alt="Simulator Image"> <br>
+<p>The Simulator is a desktop based application made using Python (Tkinter). The application can be downloaded by following the instructions provided in the Downloads section. Some of the main features of the simulator application are:</p>
+<ul>
+    <li>PROGRAM Window: It is the coding window, present on the leftmost side of the simulator. It allows the user to write the assembly program in the QSL language. Apart from the main code, it also accepts comments and labels, which simplify the execution. </li>
+    <li>COMPILED PROGRAM Window: After the user executes the program using the Burn button, the simulator takes the assembly code and converts it into the machine code (in binary format). This binary code is displayed in the compiled program window. It also consists of a pointer "CURR->", which displays the current instruction that is being executed. This is an important feature as it enables the user to keep a track of the instruction that is currently under execution.</li>
+    <li>STATES & MEMORY Window: This window displays the state vector and the memory of the quantum processor. The state vector (32 states) represents the quantum states of the qubits. The memory is a 32-bit vector that represents the classical memory of the processor. The simulator allows the user to view the changes in the state vector and memory after each instruction execution. It consists of the following information:</li>
+        <ul>
+            <li>State Vector ψ: It is the vector that represents the state of the qubits. SInce we have a 5-qubit system, this vector is of size 32.</li>
+            <li>PC: This is the Program Counter, it displays the index of the instruction that is currently under execution.</li>
+            <li>IR: Since we display the "CURR->" pointer in the COMPILED PROGRAM Window, we need not show the intruction register here again.</li>
+            <li>MEASUREMENT BUFFER: It displays the state of the Measurement Buffer, where the measurement value will be stored.</li>
+            <li>REGISTER FILE</li>
+            <li>DATA MEMORY</li>
+            <li>INSTRUCTION MEMORY</li></li>
+        </ul>
+    </li>
+    <li>BURN Button: This button is necessary to execute the program and generate a step by step trace of the program execution.</li>
+    <li>STEP Button: This button steps to the next instruction. It is useful for the user to visualise a step by step execution. In simple words, STEP is the Next Instruction. It is used after BURN button.</li>
+    <li>PREV Button: This button moves to the previous instruction. By pressing this, the suer will be able to move the data memory, register files and the quantum states also to the previous states. It is also used after BURN button.</li>
+    <li>RUN Button: This button is used to directly run the program to the end, and it displays the final output. The execution trace of the program is not stored in this. It is useful for directly moving to the final state in long programs.</li>
+    <li>OPEN Button: This button is meant for opening the Assembly Code files. The Assembly Code files for QSL have to be stored and opened in .qsl format.</li>
+    <li>BENCHMARK Button: This button is used to generate the benchmark ratings of the simulator on the users hardware in some standardised metrics. The exact details are given in the Benchmarking section.</li>
+</ul>
 
 <h2 id="Benchmarks">Benchmarks</h2>
-
+<img class="center" style=" width: 60%; margin-left: auto; margin-right: auto;" src="https://github.com/user-attachments/assets/6cc6a478-b5a4-42ad-aa42-3d312a47e907" alt="Benchmark Image"> <br>
+<p>In order to provide the user an idea of the performance of the simulator on their hardware with respect to the actual quantum hardware, we have provided a benchmarking feature in the simulator. Since we are executing this simulator on a classical machine, the "typical" quantum metrics of evaluation such as Fidelity, Error Rate, etc. are not applicable. Hence, we have devised some execution time centric metrics that are more relevant to the classical machine on which the simulator is running. The metrics are as follows:</p>
+<ul>
+    <li>CLOPS Rating: This provides the user the CLOPS rating of the simulator running on the classical hardware. More information on CLOPS Rating can be found from its original paper "Scale, Quality, and Speed: three key attributes to measure the performance of near-term quantum computers". The CLOPS rating is calculated as the number of CLOPS (Classical Logical Operations per Second) that the simulator can perform on the user's hardware. The CLOPS rating is calculated as the number of CLOPS that the simulator can perform in a second. The higher the CLOPS rating, the better the performance of the simulator on the user's hardware. We have used the parameters as Depth (Number of QV layers) D=100, Number of Qubits N=5, Number of Shots S=10, Number of templates M=10, and Number of parameters updated K=1. The CLOPS rating is calculated as: CLOPS = D * S * M * K / time_taken.</li>
+    <li>SPEC- Rating: This rating is developed by us based on some smaller versions of Benchmark programs available for OpenQASM in our own QSL Assembly Language. These programs were executed on IBM Eagle R3 machine (Quantum Processor) and then, based on the execution time, a SPEC style rating was calculated (which is the Geomatric Mean of all the speedup). The codes for the benchmark are also provided in the project repository in .qsl format.</li>
+</ul>
 <h2 id="Downloads">Downloads</h2>
 
+<p>To Download this code for the Simulator, run the following command in your terminal:</p>
+<pre>
+    git clone https://github.com/JaidevSK/QSL.git
+</pre>
+
+<p>To install the pip based dependencies in requirements.txt file, run the command:</p>
+<pre>
+    pip install -r requirements.txt
+</pre>
+
+<p>After cloning the repository, you can run the simulator by running the following command:</p>
+<pre>
+    python3 SIMULATOR.py
+</pre>
+
+<p>For Downloading this user manual in PDF format, click the following button:</p>  
+<!--Use window.print() command-->
+<button onclick="window.print()">Download PDF</button>
 
 </body>
 </html>
