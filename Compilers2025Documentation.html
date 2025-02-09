@@ -1,0 +1,36 @@
+Documentation
+
+Variable Declaration
+const <variable_name>:<datatype> = <value>; %% Store -- Global Dict
+mut <variable_name>:<datatype> = <value>; %% Environment -- Symbol Table
+
+Reassign
+<variable_name> = <new_value>; %% Only for mut
+
+Operations
+Binary Arithmetic: +, -, /, *, //, %/, ^
+Logical:
+ Unary: NOT(boolean)
+ Binary: AND(boolean1, boolean2), OR(boolean1, boolean2), XOR(boolean1, boolean2)
+
+Comments
+Add Comments
+# Single Line
+
+IO
+sys_out(<variable_name>);
+sys_out("STRING", <variable_name>);
+const / mut <variable_name>:<datatype> = sys_in("Optional String");
+<variable_name> = sys_in("Optional String"); %% Only for mut
+
+Conditional
+if (CONDITION) {DO SOMETHING}
+elif (CONDITION) {DO SOMETHING}
+elif (CONDITION) {DO SOMETHING}
+else {DO SOMETHING}
+
+
+Loops
+loop (CONDITION){
+DO SOMETHING;
+}
