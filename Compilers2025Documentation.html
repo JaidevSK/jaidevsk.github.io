@@ -1,36 +1,93 @@
-Documentation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .code-block {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Documentation</h1>
+  <h2>Variable Declaration</h2>
+  <div class="code-block">
+    <pre><code>
+const &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; %% Store -- Global Dict
+mut &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; %% Environment -- Symbol Table
+    </code></pre>
+  </div>
 
-Variable Declaration
-const <variable_name>:<datatype> = <value>; %% Store -- Global Dict
-mut <variable_name>:<datatype> = <value>; %% Environment -- Symbol Table
+  <h2>Reassign</h2>
+  <div class="code-block">
+    <pre><code>
+&lt;variable_name&gt; = &lt;new_value&gt;; %% Only for mut
+    </code></pre>
+  </div>
 
-Reassign
-<variable_name> = <new_value>; %% Only for mut
-
-Operations
+  <h2>Operations</h2>
+  <div class="code-block">
+    <pre><code>
 Binary Arithmetic: +, -, /, *, //, %/, ^
 Logical:
  Unary: NOT(boolean)
  Binary: AND(boolean1, boolean2), OR(boolean1, boolean2), XOR(boolean1, boolean2)
+    </code></pre>
+  </div>
 
-Comments
+  <h2>Comments</h2>
+  <div class="code-block">
+    <pre><code>
 Add Comments
 # Single Line
+    </code></pre>
+  </div>
 
-IO
-sys_out(<variable_name>);
-sys_out("STRING", <variable_name>);
-const / mut <variable_name>:<datatype> = sys_in("Optional String");
-<variable_name> = sys_in("Optional String"); %% Only for mut
+  <h2>IO</h2>
+  <div class="code-block">
+    <pre><code>
+sys_out(&lt;variable_name&gt;);
+sys_out("STRING", &lt;variable_name&gt;);
+const / mut &lt;variable_name&gt;:&lt;datatype&gt; = sys_in("Optional String");
+&lt;variable_name&gt; = sys_in("Optional String"); %% Only for mut
+    </code></pre>
+  </div>
 
-Conditional
+  <h2>Conditional</h2>
+  <div class="code-block">
+    <pre><code>
 if (CONDITION) {DO SOMETHING}
 elif (CONDITION) {DO SOMETHING}
 elif (CONDITION) {DO SOMETHING}
 else {DO SOMETHING}
+    </code></pre>
+  </div>
 
-
-Loops
+  <h2>Loops</h2>
+  <div class="code-block">
+    <pre><code>
 loop (CONDITION){
 DO SOMETHING;
 }
+    </code></pre>
+  </div>
+</body>
+</html>
