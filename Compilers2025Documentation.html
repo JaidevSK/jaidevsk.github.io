@@ -1,93 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-    code {
-      background-color: #f4f4f4;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-    .code-block {
-      background-color: #f4f4f4;
-      padding: 10px;
-      border-radius: 4px;
-      overflow-x: auto;
-    }
-    h2 {
-      border-bottom: 2px solid #333;
-      padding-bottom: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Documentation</h1>
-  <h2>Variable Declaration</h2>
-  <div class="code-block">
-    <pre><code>
-const &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; %% Store -- Global Dict
-mut &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; %% Environment -- Symbol Table
-    </code></pre>
-  </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
 
-  <h2>Reassign</h2>
-  <div class="code-block">
-    <pre><code>
-&lt;variable_name&gt; = &lt;new_value&gt;; %% Only for mut
-    </code></pre>
-  </div>
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
 
-  <h2>Operations</h2>
-  <div class="code-block">
-    <pre><code>
+      .code-block {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      h2 {
+        border-bottom: 2px solid #333;
+        padding-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Add the image logo.jpg at the top center-->
+    <img src="logo.jpg" alt="Algolang Logo" style="display: block; margin: 0 auto; width: 200px;">
+    <h1>ALGOLANG Documentation</h1>
+    <h2>Variable Declaration</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+let &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; # Store -- Global Dict
+    </code>
+					</pre>
+    </div>
+    <h2>Reassign</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+&lt;variable_name&gt; = &lt;new_value&gt;; # Only for mut
+    </code>
+					</pre>
+    </div>
+    <h2>Operations</h2>
+    <div class="code-block">
+      <pre>
+						<code>
 Binary Arithmetic: +, -, /, *, //, %/, ^
 Logical:
  Unary: NOT(boolean)
  Binary: AND(boolean1, boolean2), OR(boolean1, boolean2), XOR(boolean1, boolean2)
-    </code></pre>
-  </div>
-
-  <h2>Comments</h2>
-  <div class="code-block">
-    <pre><code>
+Comparison Operators: ==, !=, &gt;, &lt;, &gt;=, &lt;=
+    </code>
+					</pre>
+    </div>
+    <h2>Comments</h2>
+    <div class="code-block">
+      <pre>
+						<code>
 Add Comments
 # Single Line
-    </code></pre>
-  </div>
-
-  <h2>IO</h2>
-  <div class="code-block">
-    <pre><code>
-sys_out(&lt;variable_name&gt;);
-sys_out("STRING", &lt;variable_name&gt;);
-const / mut &lt;variable_name&gt;:&lt;datatype&gt; = sys_in("Optional String");
-&lt;variable_name&gt; = sys_in("Optional String"); %% Only for mut
-    </code></pre>
-  </div>
-
-  <h2>Conditional</h2>
-  <div class="code-block">
-    <pre><code>
+    </code>
+					</pre>
+    </div>
+    <h2>IO</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+print(&lt;variable_name&gt;);
+print("STRING", &lt;variable_name&gt;);
+    </code>
+					</pre>
+    </div>
+    <h2>Conditional</h2>
+    <div class="code-block">
+      <pre>
+						<code>
 if (CONDITION) {DO SOMETHING}
 elif (CONDITION) {DO SOMETHING}
 elif (CONDITION) {DO SOMETHING}
 else {DO SOMETHING}
-    </code></pre>
-  </div>
-
-  <h2>Loops</h2>
-  <div class="code-block">
-    <pre><code>
-loop (CONDITION){
+    </code>
+					</pre>
+    </div>
+    <h2>Loops</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+while (CONDITION){
 DO SOMETHING;
 }
-    </code></pre>
-  </div>
-</body>
+    </code>
+					</pre>
+    </div>
+    <ul>
+      <li> To break out of a loop, use the <code>breakloop</code> keyword. </li>
+      <li> To skip the rest of the code in a loop and continue to the next iteration, use the <code>skipit</code> keyword. </li>
+    </ul>
+    <h2>Functions (Alg)</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+let &lt;function_name&gt; = alg(&lt;parameter&gt;){
+  &lt;function_body&gt;
+};
+    </code>
+					</pre>
+    </div>
+    <h2>Return</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+return &lt;value&gt;;
+    </code>
+					</pre>
+    </div>
+    <h2>Function Call</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+let &lt;variable_name&gt; = &lt;function_name&gt;(&lt;parameter&gt;);
+    </code>
+					</pre>
+    </div>
+    <h2>Global Dictionary</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+let &lt;variable_name&gt; = dict();
+    </code>
+					</pre>
+    </div>
+    <h2>Dictionary Operations</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+Add Key-Value Pair: &lt;variable_name&gt;[&lt;key&gt;] = &lt;value&gt;;
+Remove Key-Value Pair: ??
+    </code>
+					</pre>
+    </div>
+    <h2>Array</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+      let L = [1,2,3]; # initialize
+      let L[0] = 4; # reassign
+      print L[0]; # access
+      print L; # print entire array
+    </code>
+					</pre>
+    </div>
+    <h2>Keywords</h2>
+    <div class="code-block">
+      <pre>
+						<code>
+      nl: \n
+      tab: \t
+      LASTCONDITION: True
+      true: True
+      false: False
+      null: None
+    </code>
+					</pre>
+    </div>
+    <h2>Examples</h2>
+    <h3>Project Euler Problem 1</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+let S = 0;
+let x = 1;
+while x < 1000 {
+    if x%3 == 0 or x%5 == 0 {
+        S = S + x;
+    }
+    x = x + 1;
+}
+print S;
+    
+						</code>
+					</pre>
+    </div>
+    <h3>Project Euler Problem 2</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+      let x = 1;
+      let y = 1;
+      let Max_limit = 4000000;
+      let S = 0;
+      let z;
+      while y < Max_limit {
+          if y mod 2 == 0 {
+              S = S + y;
+          }
+          z = x + y;
+          x = y;
+          y = z;
+      }
+      print S;
+    
+						</code>
+					</pre>
+    </div>
+    <h3>Project Euler Problem 3</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+let N = 600851475143;
+#algo to find prime factors
+let largest_prime = alg(N){
+    let p = 2;
+    let biggest = 1;
+    while p^2 <= N{
+        if N mod p == 0 {
+            N = N div p;
+            biggest = p;
+            skipit;
+        }
+        p = p+1;
+    }
+    if N > 1 {
+        biggest = N; # N is prime
+    }
+    return biggest;
+};
+print largest_prime(N);
+    
+						</code>
+					</pre>
+    </div>
+    <h3>Project Euler Problem 4</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+    let check = alg(x){
+        let y = x;
+        let n = 0;
+        while y > 0 {
+            n = n + 1;
+            y = y div 10;
+        } # n is number of digits
+        let first;
+        let last;
+        while n>1 {
+            first = x div (10**(n-1));
+            last = x%10;
+            if not (first==last){
+                return 0;
+            }
+            x = ((x %(10**(n-1))) div 10);
+            n = n -2;
+        }
+        return 1;
+    };
+    let x = 999;
+    let biggest = 1;
+    let y;
+    let z;
+    while x > 99 and x*990 > biggest {
+        y = 990;
+        while y > 99{
+            z = x * y;
+            if check(z) and (z>biggest) {
+                #print (z,x,y);
+                #print nl;
+                biggest = z;
+                breakloop;
+            }
+            y = y - 11;
+        }
+        x = x - 1;
+    }
+    print biggest;
+    </code>
+					</pre>
+    </div>
+    <h3>Project Euler Problem 5</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+    let gcd = alg(x,y){
+        if y == 0 {
+            return x;
+        }
+        return gcd(y,x mod y);
+    };
+    let lcm = alg(x,y){
+        let g = gcd(x,y);
+        return (x div g)*y;
+    };
+    let x =1;
+    let l =1;
+    while x <= 20{
+        l = lcm(l,x);
+        x = x + 1;
+    }
+    print l;
+
+    
+						</code>
+					</pre>
+    </div>
+    <h3>Project Euler Problem 6</h3>
+    <div class="code-block">
+      <pre>
+						<code>
+let n =100;
+let S = (n*(n+1))//2;
+let S2 = (n*(n+1)*(2*n+1))//6;
+print S**2 - S2;
+    </code>
+					</pre>
+    </div>
+  </body>
 </html>
