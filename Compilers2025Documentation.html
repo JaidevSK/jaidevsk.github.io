@@ -1,178 +1,341 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-      }
-
-      code {
-        background-color: #f4f4f4;
-        padding: 2px 4px;
-        border-radius: 4px;
-      }
-
-      .code-block {
-        background-color: #f4f4f4;
-        padding: 10px;
-        border-radius: 4px;
-        overflow-x: auto;
-      }
-
-      h2 {
-        border-bottom: 2px solid #333;
-        padding-bottom: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <!--Add the image logo.jpg at the top center-->
-    <img src="logo.jpg" alt="Algolang Logo" style="display: block; margin: 0 auto; width: 200px;">
-    <h1>ALGOLANG Documentation</h1>
-    <h2>Variable Declaration</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-let &lt;variable_name&gt;:&lt;datatype&gt; = &lt;value&gt;; # Store -- Global Dict
-    </code>
-					</pre>
-    </div>
-    <h2>Reassign</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-&lt;variable_name&gt; = &lt;new_value&gt;; # Only for mut
-    </code>
-					</pre>
-    </div>
-    <h2>Operations</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-Binary Arithmetic: +, -, /, *, //, %/, ^
-Logical:
- Unary: NOT(boolean)
- Binary: AND(boolean1, boolean2), OR(boolean1, boolean2), XOR(boolean1, boolean2)
-Comparison Operators: ==, !=, &gt;, &lt;, &gt;=, &lt;=
-    </code>
-					</pre>
-    </div>
-    <h2>Comments</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-Add Comments
-# Single Line
-    </code>
-					</pre>
-    </div>
-    <h2>IO</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-print(&lt;variable_name&gt;);
-print("STRING", &lt;variable_name&gt;);
-    </code>
-					</pre>
-    </div>
-    <h2>Conditional</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-if (CONDITION) {DO SOMETHING}
-elif (CONDITION) {DO SOMETHING}
-elif (CONDITION) {DO SOMETHING}
-else {DO SOMETHING}
-    </code>
-					</pre>
-    </div>
-    <h2>Loops</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-while (CONDITION){
-DO SOMETHING;
+<html>
+<head>
+<title>Your New Programming Language - Documentation</title>
+<style>
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    display: flex;
 }
-    </code>
-					</pre>
-    </div>
-    <ul>
-      <li> To break out of a loop, use the <code>breakloop</code> keyword. </li>
-      <li> To skip the rest of the code in a loop and continue to the next iteration, use the <code>skipit</code> keyword. </li>
+
+#index-sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#index-sidebar img {
+    display: block;
+    margin: 0 auto 20px; /* Center the image and add space below */
+    max-width: 150px; /* Adjust as needed */
+}
+
+#content-area {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: monospace;
+}
+
+.index-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.index-list li {
+    margin-bottom: 10px;
+}
+
+.index-list a {
+    text-decoration: none;
+    color: #0078D4;
+}
+
+.content-page {
+    display: none;
+}
+
+.content-page.active {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div id="index-sidebar">
+    <h1>Algolang</h1>
+    <img src="logo.jpg" alt="Language Logo">
+    <ul class="index-list">
+        <li><a href="#index">Welcome</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#variables-numbers">Variables & Numbers</a></li>
+        <li><a href="#operators">Operators</a></li>
+        <li><a href="#control-flow">Control Flow</a></li>
+        <li><a href="#functions">Functions</a></li>
+        <li><a href="#data-structures">Data Structures</a></li>
+        <li><a href="#typing-scoping">Typing & Scoping</a></li>
+        <li><a href="#advanced">Advanced Features</a></li>
+        <li><a href="#examples">Examples</a></li>
     </ul>
-    <h2>Functions (Alg)</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-let &lt;function_name&gt; = alg(&lt;parameter&gt;){
-  &lt;function_body&gt;
+</div>
+
+<div id="content-area">
+
+    <div id="index" class="content-page active">
+        <h2 style="text-align: center;">Welcome to Algolang!</h2>
+        <img src="logo.jpg" alt="Language Logo" style="display: block; margin: 0 auto 20px; max-width: 200px;">
+        <p>This documentation serves as a comprehensive guide to understanding and utilizing our new programming language. Whether you're a complete beginner or an experienced developer, this guide aims to provide you with the necessary tools and knowledge to effectively write and execute programs.</p>
+        <p>Our language is designed with simplicity and power in mind, allowing you to focus on solving problems rather than getting bogged down in complex syntax. The left sidebar contains an index of topics, each covering a specific aspect of the language. We encourage you to explore each section in order to gain a thorough understanding of the language's capabilities.</p>
+        <p>Language Designers</p>
+        <ul>
+          <li>Pranav Joshi</li>
+          <li>Jaidev Khalane</li>
+          <li>Aniket Mishra</li>
+          <li>Nimitt</li>
+        </ul>
+        <p> This language was developed as a project in the course Compilers (2025) at IIT Gandhinagar.</p>
+    </div>
+
+    <div id="getting-started" class="content-page">
+        <h2>Getting Started</h2>
+        <p>Before you can start writing code, you need to set up your development environment. This involves installing the language interpreter or compiler and configuring your text editor or IDE.</p>
+        <ol>
+            <li><strong>Installation:</strong><br>
+                <p>Detailed instructions on how to install the language on various operating systems (Windows, macOS, Linux). Provide links to download the necessary files and explain any prerequisites.</p>
+            </li>
+            <li><strong>Running your first program:</strong><br>
+                <p>Explain how to create a new file with a <code>.lang</code> extension, write a simple "Hello, World!" program, and execute it using the interpreter or compiler. Provide step-by-step instructions and screenshots if necessary.</p>
+                <pre><code>print "Hello, World!";</code></pre>
+                <p>Explain the output of the program and how to verify that it ran successfully.</p>
+            </li>
+            <li><strong>Basic syntax:</strong><br>
+                <p>Introduce the fundamental syntax of the language, including keywords, identifiers, operators, and statements. Explain the role of whitespace and comments in the code.</p>
+            </li>
+        </ol>
+    </div>
+
+    <div id="variables-numbers" class="content-page">
+        <h2>Variables and Numbers</h2>
+        <h3>Variables</h3>
+        <p>Variables are used to store data that can be manipulated during program execution. You declare variables using the <code>let</code> keyword, followed by the variable name and an optional initial value.</p>
+        <pre><code>let x = 10;
+let message = "Welcome!";
+let isReady; # Declaration without initialization
+</code></pre>
+        <p>Variable names must start with a letter or underscore and can contain letters, numbers, and underscores. Explain the concept of variable scope and lifetime.</p>
+        <h3>Numbers</h3>
+        <p>Our language supports integer numbers, which are whole numbers without decimal points. You can perform arithmetic operations on numbers using operators like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, and <code>^</code>.</p>
+        <pre><code>let num1 = 20;
+let num2 = 5;
+let sum = num1 + num2;
+print sum;
+</code></pre>
+        <p>Explain the range of supported integer values and how to handle overflow or underflow situations.</p>
+    </div>
+
+    <div id="operators" class="content-page">
+        <h2>Operators</h2>
+        <p>Operators are symbols that perform operations on values. They are used to manipulate data and control the flow of execution.</p>
+        <h3>Arithmetic Operators</h3>
+        <ul>
+            <li><code>+</code> (Addition): Adds two numbers.</li>
+            <li><code>-</code> (Subtraction): Subtracts one number from another.</li>
+            <li><code>*</code> (Multiplication): Multiplies two numbers.</li>
+            <li><code>/</code> (Division): Divides one number by another.</li>
+            <li><code>//</code> (Integer Division): Divides and rounds down to the nearest whole number.</li>
+            <li><code>%</code> (Modulo): Returns the remainder of a division.</li>
+            <li><code>^</code> (Exponentiation): Raises a number to a power.</li>
+        </ul>
+        <p>Provide examples and explanations for each operator.</p>
+        <h3>Comparison Operators</h3>
+        <ul>
+            <li><code>==</code> (Equal): Checks if two values are equal.</li>
+            <li><code>!=</code> (Not Equal): Checks if two values are not equal.</li>
+            <li><code>&lt;</code> (Less Than): Checks if the left value is less than the right value.</li>
+            <li><code>&gt;</code> (Greater Than): Checks if the left value is greater than the right value.</li>
+            <li><code>&lt;=</code> (Less Than or Equal): Checks if the left value is less than or equal to the right value.</li>
+            <li><code>&gt;=</code> (Greater Than or Equal): Checks if the left value is greater than or equal to the right value.</li>
+        </ul>
+        <p>Explain how comparison operators are used in conditional statements.</p>
+        <h3>Logical Operators</h3>
+        <ul>
+            <li><code>and</code>: Returns <code>true</code> if both conditions are <code>true</code>.</li>
+            <li><code>or</code>: Returns <code>true</code> if at least one condition is <code>true</code>.</li>
+            <li><code>not</code>: Reverses a <code>true</code> or <code>false</code> value.</li>
+        </ul>
+        <p>Explain how logical operators are used to combine or modify boolean values.</p>
+    </div>
+
+    <div id="control-flow" class="content-page">
+        <h2>Control Flow</h2>
+        <p>Control flow statements allow you to control the order in which code is executed based on certain conditions or loops.</p>
+        <h3>`if` Statements</h3>
+        <p>The <code>if</code> statement executes a block of code only if a specified condition is <code>true</code>. You can also use <code>else</code> and <code>elseif</code> to handle alternative conditions.</p>
+        <pre><code>let age = 20;
+if age >= 18 {
+    print "Adult";
+} else {
+    print "Minor";
+}
+</code></pre>
+        <p>Explain the syntax and usage of <code>if</code>, <code>else</code>, and <code>elseif</code> statements.</p>
+        <h3>`while` Loops</h3>
+        <p>The <code>while</code> loop repeats a block of code as long as a specified condition is <code>true</code>.</p>
+        <pre><code>let i = 0;
+while i < 5 {
+    print i;
+    i = i + 1;
+}
+</code></pre>
+        <p>Explain the syntax and usage of <code>while</code> loops and how to avoid infinite loops.</p>
+        <h3>`breakloop` and `skipit`</h3>
+<p><code>breakloop</code> immediately exits a loop, while <code>skipit</code> skips the rest of the current iteration and moves to the next. Provide examples showcasing when to use each.</p>
+        <pre><code>let i = 0;
+while i < 10 {
+    i = i + 1;
+    if i == 5 {
+        skipit;
+    }
+    if i == 8 {
+        breakloop;
+    }
+    print i;
+}
+</code></pre>
+    </div>
+
+    <div id="functions" class="content-page">
+        <h2>Functions</h2>
+        <p>Functions are reusable blocks of code that perform specific tasks. They help organize code and improve readability.</p>
+        <p>You define functions using the <code>alg</code> keyword, followed by the function name, a list of parameters in parentheses, and the function body enclosed in curly braces.</p>
+        <pre><code>let add = alg(a, b) {
+            return a + b;
+        };
+        let result = add(3, 5);
+        print result;
+        </code></pre>
+        <p>Explain how to define functions with parameters and return values. Discuss the concept of function scope and how to call functions.</p>
+        <p>Functions can also be assigned to variables and used as values, demonstrating first-class function capabilities.</p>
+        <pre><code>let myFunc = add;
+let anotherResult = myFunc(10, 20);
+print anotherResult;
+</code></pre>
+        <p>When interpreted, the language supports closures, allowing functions to capture variables from their surrounding scope.</p>
+        <pre><code>let outer = alg(x) {
+    let inner = alg(y) {
+        return x + y;
+    };
+    return inner;
 };
-    </code>
-					</pre>
+
+let closureFunc = outer(10);
+print closureFunc(5);
+</code></pre>
     </div>
-    <h2>Return</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-return &lt;value&gt;;
-    </code>
-					</pre>
+
+    <div id="data-structures" class="content-page">
+        <h2>Data Structures</h2>
+        <p>Data structures are used to organize and store collections of data.</p>
+        <h3>Lists (Vectors and ndarrays)</h3>
+        <p>Lists are ordered collections of items. When compiled, they are treated as lists. When interpreted, they are treated as ndarrays (multidimensional arrays). You can access elements by their index, starting from 0.</p>
+        <pre><code>let myList = [1, 2, 3, 4, 5];
+print myList[0]; # Output: 1
+myList[2] = 10; # Modify an element
+print myList;
+</code></pre>
+        <p>Explain how to create lists, access elements, modify elements, and perform common list operations.</p>
+        <h3>Dictionaries (Hash Tables)</h3>
+        <p>Dictionaries store data as key-value pairs. Keys must be unique and immutable.</p>
+        <pre><code>let myDict = {"name": "Alice", "age": 30};
+print myDict["name"]; # Output: Alice
+myDict["city"] = "New York"; # Add a key-value pair
+print myDict;
+</code></pre>
+        <p>Explain how to create dictionaries, access values by key, add key-value pairs, and check if a key exists.</p>
     </div>
-    <h2>Function Call</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-let &lt;variable_name&gt; = &lt;function_name&gt;(&lt;parameter&gt;);
-    </code>
-					</pre>
+
+    <div id="typing-scoping" class="content-page">
+        <h2>Typing and Scoping</h2>
+        <h3>Dynamic Typing</h3>
+        <p>Our language uses dynamic typing, meaning the type of a variable is determined at runtime. You don't need to explicitly declare the type of a variable.</p>
+        <pre><code>let x = 10; # x is an integer
+x = "Hello"; # x is now a string
+print x;
+</code></pre>
+        <p>Explain the benefits and drawbacks of dynamic typing, and how the interpreter handles type conversions and errors.</p>
+        <h3>Dynamic/Lexical Scoping</h3>
+        <p>When the code is interpreted, the scoping is dynamic. When the code is compiled, the scoping is lexical.</p>
+        <p>Dynamic Scoping: Variables are looked up in the scope where the function is called.</p>
+        <pre><code>let x = 10;
+let myFunc = alg() {
+    print x;
+};
+let outer = alg() {
+    let x = 20;
+    myFunc();
+};
+outer(); # Output: 10 (dynamic scoping)
+</code></pre>
+        <p>Lexical Scoping: Variables are looked up in the scope where the function is defined.</p>
+        <pre><code>let x = 10;
+let myFunc = alg() {
+    print x;
+};
+let outer = alg() {
+    let x = 20;
+    myFunc();
+};
+outer(); # Output: 20 (lexical scoping when compiled)
+</code></pre>
+        <p>Explain the differences between dynamic and lexical scoping, and how they affect variable access and function behavior.</p>
     </div>
-    <h2>Global Dictionary</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-let &lt;variable_name&gt; = dict();
-    </code>
-					</pre>
+
+    <div id="advanced" class="content-page">
+        <h2>Advanced Features</h2>
+        <p>Our language offers several advanced features to enhance your programming experience.</p>
+        <h3>Run-Time Type Checking</h3>
+        <p>The interpreter performs run-time type checking to ensure that operations are performed on compatible data types. If a type mismatch occurs, an error is raised.</p>
+        <h3>Extendable Interpreter Functionality (SysCalls)</h3>
+        <p>You can extend the interpreter with user-defined SysCalls to add custom functionality. Explain how to define and use SysCalls.</p>
+        <h3>AST Visualization (Graphviz)</h3>
+        <p>The Abstract Syntax Tree (AST) of your code can be visualized using Graphviz, helping you understand the structure of your program. Provide instructions on how to generate and view the AST.</p>
+        <h3>Basic Plotting (Termplotlib)</h3>
+        <p>You can create simple plots in the terminal using Termplotlib. Explain how to use the plotting functions.</p>
+        <h3>Syntax Highlighting</h3>
+        <p>Our language supports syntax highlighting in the terminal using escape sequences and in VS Code using the AlgSyn extension, making your code easier to read. Provide instructions on how to enable syntax highlighting.</p>
+        <h3>Compilation to MIPS32 (Virtual Machine)</h3>
+        <p>Your code can be compiled to MIPS32 assembly and run on our custom virtual machine. Explain the compilation process and how to run the compiled code.</p>
     </div>
-    <h2>Dictionary Operations</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-Add Key-Value Pair: &lt;variable_name&gt;[&lt;key&gt;] = &lt;value&gt;;
-Remove Key-Value Pair: ??
-    </code>
-					</pre>
-    </div>
-    <h2>Array</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-      let L = [1,2,3]; # initialize
-      let L[0] = 4; # reassign
-      print L[0]; # access
-      print L; # print entire array
-    </code>
-					</pre>
-    </div>
-    <h2>Keywords</h2>
-    <div class="code-block">
-      <pre>
-						<code>
-      nl: \n
-      tab: \t
-      LASTCONDITION: True
-      true: True
-      false: False
-      null: None
-    </code>
-					</pre>
-    </div>
-    <h2>Examples</h2>
-    <h3>Project Euler Problem 1</h3>
+
+    <div id="examples" class="content-page">
+        <h2>Examples</h2>
+        <p>Here are some examples demonstrating various features of our language.</p>
+        <pre><code># Example 1: Sum of numbers in a list
+let numbers = [1, 2, 3, 4, 5];
+let sum = 0;
+for num in numbers {
+    sum = sum + num;
+}
+print sum;
+</code></pre>
+        <pre><code># Example 2: Fibonacci sequence
+let fib = alg(n) {
+    if n <= 1 {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+};
+print fib(10);
+</code></pre>
+        <p>Include more complex examples demonstrating various features of the language, such as file I/O, network communication, and advanced data structures.</p>
+        <h2>Solutions to Project Euler</h2>
+            <h3>Project Euler Problem 1</h3>
     <div class="code-block">
       <pre>
 						<code>
@@ -320,6 +483,23 @@ let S2 = (n*(n+1)*(2*n+1))//6;
 print S**2 - S2;
     </code>
 					</pre>
+        
     </div>
-  </body>
+
+</div>
+
+<script>
+document.querySelectorAll('.index-list a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetPage = this.getAttribute('href').substring(1);
+        document.querySelectorAll('.content-page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(targetPage).classList.add('active');
+    });
+});
+</script>
+
+</body>
 </html>
