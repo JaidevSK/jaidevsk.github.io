@@ -123,6 +123,17 @@ code {
                 
                 <p>This will print Hello World! in the terminal.</p>
             </li>
+            <li>User Inputs</li>
+            <p>For taking user inputs, use the <code>input</code> function.</p>
+            <pre><code>let name = input("Enter your name: ");
+print "Hello, " + name + "!";
+</code></pre>
+            <li>Comments</li>
+            <p>Comments can be added using <code>#</code> symbol.</p>
+            <pre><code># This is a comment
+print "Hello, World!"; # This is another comment
+</code></pre>
+
         </ol>
     </div>
 
@@ -480,6 +491,52 @@ outer(); # Output: 20 (lexical scoping when compiled)
         <h3>Compilation to MIPS32 (Virtual Machine)</h3>
         <p>Your code can be compiled to MIPS32 assembly and run on our custom virtual machine.</p>
     </div>
+
+    <div id="decisions" class="content-page">
+        <h2>Key Design Decisions and Innovations</h2>
+        <p>Our language was designed with simplicity and innovation in mind. Here are some key design decisions that influenced the development of Algolang.</p>
+    <ul>
+        <li>Dynamic Typing: We chose dynamic typing to allow flexibility in variable declarations and assignments without the need for explicit type annotations.</li>
+        <li>Dynamic/Lexical Scoping: We implemented dynamic scoping when interpreted and lexical scoping when compiled to provide a balance between flexibility and predictability.</li>
+        <li>Lists and Vectors: We introduced lists and vectors to support collections of data and provide a convenient way to store and manipulate values.</li>
+        <li>Run-Time Type Checking: We included run-time type checking to catch type errors early and ensure safe and consistent behavior.</li>
+        <li>Extendable Interpreter Functionality: We enabled users to extend the interpreter with custom SysCalls to add new features and capabilities.</li>
+        <li>Functions as Values: We treated functions as first-class values, allowing them to be assigned to variables, passed as arguments, and returned from other functions.</li>
+        <li>Function Operations: We added additional operations like function addition and multiplication to provide more flexibility and composability.</li>
+        <li>Closure of Functions: We supported closures in the interpreted version to capture variables from the surrounding scope and create self-contained functions.</li>
+        <li>AST Visualization: We implemented AST visualization using Graphviz to help users understand the structure of their code and debug more effectively.</li>
+        <li>Basic Plotting: We included basic plotting using Termplotlib to allow users to visualize data and results directly in the terminal.</li>
+        <li>Syntax Highlighting: We provided syntax highlighting in the terminal using escape sequences and in VS Code using the AlgSyn extension to improve code readability and aesthetics.</li>
+        <li>Compilation to MIPS32: We compiled code to MIPS32 assembly to run on our custom virtual machine, enabling efficient execution and performance.</li>
+        <li>VM Design: Register based VM with a Stack for the language like MIPS32</li>
+    </ul>
+
+    </div>
+
+    <div id="future" class="content-page">
+        <h2>Future Development</h2>
+    <ul>
+        <li>Quantum VM: We want to explore the possibility of compiling Algolang to a quantum virtual machine to leverage quantum computing capabilities as well as support for quantum gate level operations.</li>
+        <li>Two Modes of Operation: Quantum + Classical mode of operation will be supported by Python based VM, while the C based VM, focussed on performance, will support only classical operations.</li>
+        <li>Development of a Coding Application: We plan to develop a coding application that integrates Algolang with a user-friendly interface, code editor, and the interpreter/compiler to enhance the development experience.</li>
+        <li>More libraries: We plan to add more libraries to support advanced data structures, algorithms, and mathematical operations.</li>
+        <li>Optimization: We aim to optimize the interpreter and compiler to improve performance and reduce execution time.</li>
+    </ul>
+
+    </div>
+
+    <div id="isa" class="content-page">
+        <h2 style="text-align: center;">Virtual Machine: Instruction Set Architecture</h2>
+        <br>
+        <p>We are currently compiling to a the set of instructions that are similar to MIPS32 and are displayed below:</p>
+        <br>
+        <iframe class="pdf" 
+                src="Spim_instr_set.pdf"
+            width="800" height="500" style="border: none; margin: 0 auto; display: block;">
+        </iframe>
+        <p style="font-size: smaller;text-align: center;"><a href="https://eclass.hmu.gr/modules/document/file.php/TP238/%CE%92%CE%BF%CE%B7%CE%B8%CE%AE%CE%BC%CE%B1%CF%84%CE%B1/Spim_instr_set.pdf">Reference</a></p>
+    </div>
+
 
     <div id="examples" class="content-page">
         <h2>Examples</h2>
