@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Algolang - Documentation</title>
+<title>Your New Programming Language - Documentation</title>
 <style>
 body {
     font-family: sans-serif;
@@ -74,7 +74,7 @@ code {
     <ul class="index-list">
         <li><a href="#index">Welcome</a></li>
         <li><a href="#getting-started">Getting Started</a></li>
-        <li><a href="#variables-numbers">Variables & Numbers</a></li>
+        <li><a href="#variables-numbers">Variables & Datatypes</a></li>
         <li><a href="#operators">Operators</a></li>
         <li><a href="#control-flow">Control Flow</a></li>
         <li><a href="#functions">Functions</a></li>
@@ -90,8 +90,8 @@ code {
     <div id="index" class="content-page active">
         <h2 style="text-align: center;">Welcome to Algolang!</h2>
         <img src="logo.jpg" alt="Language Logo" style="display: block; margin: 0 auto 20px; max-width: 200px;">
-        <p>This documentation serves as a comprehensive guide to understanding and utilizing our new programming language. Whether you're a complete beginner or an experienced developer, this guide aims to provide you with the necessary tools and knowledge to effectively write and execute programs.</p>
-        <p>Our language is designed with simplicity and power in mind, allowing you to focus on solving problems rather than getting bogged down in complex syntax. The left sidebar contains an index of topics, each covering a specific aspect of the language. We encourage you to explore each section in order to gain a thorough understanding of the language's capabilities.</p>
+        <p>This documentation serves as a comprehensive guide to understanding and utilizing Algolang. Whether you're a complete beginner or an experienced developer, this guide aims to provide you with the necessary tools and knowledge to effectively write and execute programs.</p>
+        <p>Our language is designed with simplicity in mind, allowing you to focus on solving problems rather than getting stuck in complex syntax. The left sidebar contains an index of topics, each covering a specific aspect of the language. We encourage you to explore each section in order to gain a thorough understanding of the language's capabilities.</p>
         <p>Language Designers</p>
         <ul>
           <li>Pranav Joshi</li>
@@ -107,30 +107,38 @@ code {
         <p>Before you can start writing code, you need to set up your development environment. This involves installing the language interpreter or compiler and configuring your text editor or IDE.</p>
         <ol>
             <li><strong>Installation:</strong><br>
-                <p>Detailed instructions on how to install the language on various operating systems (Windows, macOS, Linux). Provide links to download the necessary files and explain any prerequisites.</p>
+                <p>The compiler has not been released. It will be updated as soon as the Course is completed.</p>
             </li>
             <li><strong>Running your first program:</strong><br>
-                <p>Explain how to create a new file with a <code>.lang</code> extension, write a simple "Hello, World!" program, and execute it using the interpreter or compiler. Provide step-by-step instructions and screenshots if necessary.</p>
+                <p>First create a file in text editor with <code>.algl</code> extension, write a simple "Hello, World!" program, and execute it using the interpreter or compiler.</p>
                 <pre><code>print "Hello, World!";</code></pre>
-                <p>Explain the output of the program and how to verify that it ran successfully.</p>
-            </li>
-            <li><strong>Basic syntax:</strong><br>
-                <p>Introduce the fundamental syntax of the language, including keywords, identifiers, operators, and statements. Explain the role of whitespace and comments in the code.</p>
+                Run it with the command <pre><code>sh run.sh file_name</pre></code> for using it with the Compiler.
+                Run it with the command <pre><code>python3 RUN.py file_name</pre></code> for using it with the Interpreter.
+                
+                <p>This will print Hello World! in the terminal.</p>
             </li>
         </ol>
     </div>
 
     <div id="variables-numbers" class="content-page">
-        <h2>Variables and Numbers</h2>
+        <h2>Variables and Datatypes</h2>
         <h3>Variables</h3>
         <p>Variables are used to store data that can be manipulated during program execution. You declare variables using the <code>let</code> keyword, followed by the variable name and an optional initial value.</p>
         <pre><code>let x = 10;
 let message = "Welcome!";
 let isReady; # Declaration without initialization
 </code></pre>
-        <p>Variable names must start with a letter or underscore and can contain letters, numbers, and underscores. Explain the concept of variable scope and lifetime.</p>
-        <h3>Numbers</h3>
-        <p>Our language supports integer numbers, which are whole numbers without decimal points. You can perform arithmetic operations on numbers using operators like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, and <code>^</code>.</p>
+        <p>Variable names must start with a letter or underscore and can contain letters, numbers, and underscores. Variable Scoping is defined in the page on Typing and Scoping.</p>
+        <h2>Supported Datatypes</h2>
+        <h3>Integers</h3>
+        <p>Our language supports integer numbers, which are numbers without decimal points. You can perform arithmetic operations on numbers using operators like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, and <code>^</code>.</p>
+        <h3>Floats</h3>
+        <p>Floats are numbers with decimal points. They can be used to represent fractional values and perform operations like addition, subtraction, multiplication, and division.</p>
+        <h3>Strings</h3>
+        <p>Strings are sequences of characters enclosed in single or double quotes. The string should support either single or double quotes. There are come more string operations supported like concatenation, indexing, discussed in the Data Structures page. nl is a special character for newline.</p>
+        <h3>Booleans</h3>
+        <p>Booleans represent true or false values. They are used in conditional statements and logical operations.</p>
+        <h3>Compound Data Types</h3>
         <pre><code>let num1 = 20;
 let num2 = 5;
 let sum = num1 + num2;
@@ -152,7 +160,6 @@ print sum;
             <li><code>%</code> (Modulo): Returns the remainder of a division.</li>
             <li><code>^</code> (Exponentiation): Raises a number to a power.</li>
         </ul>
-        <p>Provide examples and explanations for each operator.</p>
         <h3>Comparison Operators</h3>
         <ul>
             <li><code>==</code> (Equal): Checks if two values are equal.</li>
@@ -177,14 +184,20 @@ print sum;
         <p>Control flow statements allow you to control the order in which code is executed based on certain conditions or loops.</p>
         <h3>`if` Statements</h3>
         <p>The <code>if</code> statement executes a block of code only if a specified condition is <code>true</code>. You can also use <code>else</code> and <code>elseif</code> to handle alternative conditions.</p>
-        <pre><code>let age = 20;
-if age >= 18 {
-    print "Adult";
-} else {
-    print "Minor";
+        <pre><code>let num = 10;
+if num > 0 {
+    print "POSITIVE";
 }
+elif num == 0 {
+    print "ZERO";
+} 
+else {
+    print "NEGATIVE";
+}
+
+# Prints POSITIVE
 </code></pre>
-        <p>Explain the syntax and usage of <code>if</code>, <code>else</code>, and <code>elseif</code> statements.</p>
+        <p>Here if-elif-else check for the conditions and if they are </p>
         <h3>`while` Loops</h3>
         <p>The <code>while</code> loop repeats a block of code as long as a specified condition is <code>true</code>.</p>
         <pre><code>let i = 0;
@@ -242,22 +255,109 @@ print closureFunc(5);
     <div id="data-structures" class="content-page">
         <h2>Data Structures</h2>
         <p>Data structures are used to organize and store collections of data.</p>
-        <h3>Lists (Vectors and ndarrays)</h3>
-        <p>Lists are ordered collections of items. When compiled, they are treated as lists. When interpreted, they are treated as ndarrays (multidimensional arrays). You can access elements by their index, starting from 0.</p>
-        <pre><code>let myList = [1, 2, 3, 4, 5];
+        <h3>Strings</h3>
+        <p>Strings are sequences of characters enclosed in single or double quotes. You can perform various operations on strings, such as concatenation and slicing.</p>
+        <h4>Supported Operations</h4>
+        <li>Initialization</li>
+        <pre><code>let message = "Hello, World!";
+</code></pre>
+        <li>Concatenation: Combine two strings into one.</li>
+        <pre><code>let greeting = "Hello, ";
+let world = "World!";
+let message = greeting + world;
+print message; # Output: Hello, World!
+</code></pre>
+        <li>Length: Get the number of characters in a string.</li>
+        <pre><code>let message = "Hello, World!";
+let length = len(message);
+print length; # Output: 13
+</code></pre>
+        <li>Indexing: Access characters by index (assignment is not allowed in interpreted).</li>
+        <pre><code>let message = "Hello, World!";
+print message[7]; # Output: W
+</code></pre>
+        <h3>Lists and Vectors</h3>
+        <p>Lists are ordered collections of items. You can access elements by their index, starting from 0.</p>
+        <pre><code>let myList = {1, 2, 3, 4, 5}; # Create a list
 print myList[0]; # Output: 1
 myList[2] = 10; # Modify an element
 print myList;
 </code></pre>
-        <p>Explain how to create lists, access elements, modify elements, and perform common list operations.</p>
+<h4>Supported Operations</h4>
+<li>Declaration</li>
+<pre><code>let myList = {1, 2, 3, 4, 5};
+</code></pre>
+<li>Indexing: Access elements by index.</li>
+<pre><code>let myList = {1, 2, 3, 4, 5};
+print myList[2]; # Output: 3
+</code></pre>
+<li>Assignment: Modify elements by index.</li>
+<pre><code>let myList = {1, 2, 3, 4, 5};
+myList[2] = 10;
+print myList; # Output: {1, 2, 10, 4, 5}
+</code></pre>
+<li>Concatenation: Combine two lists into one.</li>
+<pre><code>let list1 = {1, 2, 3};
+let list2 = {4, 5, 6};
+let combined = list1 + list2;
+print combined; # Output: {1, 2, 3, 4, 5, 6}
+</code></pre>
+
+<h3>Vectors</h3>
+<p>Vectors (ndarrays) are one-dimensional arrays that can store multiple values of the same type. They are indexed by integers starting from 0. In the compiled version, they are treated as lists, while in the interpreted version, they are treated as numpy arrays.</p>
+        <pre><code>let myVector = [1, 2, 3, 4, 5]; # Create a vector
+print myVector[0]; # Output: 1
+myVector[2] = 10; # Modify an element
+print myVector;
+</code></pre>
+        <h4>Supported Operations</h4>
+        <li>All the operations supported by Lists</li>
+        <li>+ Operation</li>
+        <pre><code>let myVector1 = [1, 2, 3];
+let myVector2 = [4, 5, 6];
+let combinedVector = myVector1 + myVector2;
+print combinedVector; # Output: [5, 7, 9]
+</code></pre>
+<li> Similarly, it supports -, *, / and ** pointwise similarly to integers in interpreted version.</li>
+<li>Length</li>
+<pre><code>let myVector = [1, 2, 3, 4, 5];
+let length = len(myVector);
+print length; # Output: 5
+</code></pre>
+
+
+
         <h3>Dictionaries (Hash Tables)</h3>
         <p>Dictionaries store data as key-value pairs. Keys must be unique and immutable.</p>
-        <pre><code>let myDict = {"name": "Alice", "age": 30};
-print myDict["name"]; # Output: Alice
-myDict["city"] = "New York"; # Add a key-value pair
-print myDict;
+        <pre><code>dict myDict;
+myDict["name"] = "NAME";
+myDict["age"] = 100;
+print myDict["name"];
+print myDict["age"];
+print myDict; # In the interpreted version, it will be printed as a dictionary.
 </code></pre>
-        <p>Explain how to create dictionaries, access values by key, add key-value pairs, and check if a key exists.</p>
+<h4>Supported Operations</h4>
+<li>Declaration</li>
+<pre><code>dict myDict;
+</code></pre>
+
+<li>Assignment and Retrieval: Add or modify key-value pairs.</li>
+<pre><code>dict myDict;
+myDict["name"] = "NAME";
+myDict["age"] = 100;
+print myDict["name"];
+print myDict["age"];
+</code></pre>
+
+<li>Keys: Get all keys or values from the dictionary.</li>
+<pre><code>dict myDict;
+myDict["name"] = "NAME";
+myDict["age"] = 100;
+keys = keys(myDict);
+print keys; # Output: ["name", "age"]
+</code></pre>
+
+
     </div>
 
     <div id="typing-scoping" class="content-page">
