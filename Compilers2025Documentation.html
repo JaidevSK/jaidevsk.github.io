@@ -81,8 +81,10 @@ code {
         <li><a href="#data-structures">Data Structures</a></li>
         <li><a href="#typing-scoping">Typing & Scoping</a></li>
         <li><a href="#advanced">Advanced Features</a></li>
+        <li><a href="#isa">Instructions for VM</a></li>
         <li><a href="#future">Future Directions</a></li>
         <li><a href="#metrics">Performance Metrics</a></li>
+        <li><a href="#decisions">Design Decisions</a></li>
         <li><a href="#examples">Examples</a></li>
     </ul>
 </div>
@@ -148,7 +150,6 @@ let num2 = 5;
 let sum = num1 + num2;
 print sum;
 </code></pre>
-        <p>Explain the range of supported integer values and how to handle overflow or underflow situations.</p>
     </div>
 
     <div id="operators" class="content-page">
@@ -201,7 +202,7 @@ else {
 
 # Prints POSITIVE
 </code></pre>
-        <p>Here if-elif-else check for the conditions and if they are </p>
+        <p>Here if-elif-else check for the conditions and if they are satisfied, the corresponding block is executed.</p>
         <h3>`while` Loops</h3>
         <p>The <code>while</code> loop repeats a block of code as long as a specified condition is <code>true</code>.</p>
         <pre><code>let i = 0;
@@ -210,9 +211,9 @@ while i < 5 {
     i = i + 1;
 }
 </code></pre>
-        <p>Explain the syntax and usage of <code>while</code> loops and how to avoid infinite loops.</p>
+<p>The while loop has th
         <h3>`breakloop` and `skipit`</h3>
-<p><code>breakloop</code> immediately exits a loop, while <code>skipit</code> skips the rest of the current iteration and moves to the next. Provide examples showcasing when to use each.</p>
+<p><code>breakloop</code> immediately exits a loop, while <code>skipit</code> skips the rest of the current iteration and moves to the next.</p>
         <pre><code>let i = 0;
 while i < 10 {
     i = i + 1;
@@ -225,6 +226,7 @@ while i < 10 {
     print i;
 }
 </code></pre>
+<p>The above code runs from 0 to 10, but skips 5 and breaks at 8.</p>
     </div>
 
     <div id="functions" class="content-page">
@@ -237,7 +239,6 @@ while i < 10 {
         let result = add(3, 5);
         print result;
         </code></pre>
-        <p>Explain how to define functions with parameters and return values. Discuss the concept of function scope and how to call functions.</p>
         <p>Functions can also be assigned to variables and used as values, demonstrating first-class function capabilities.</p>
         <pre><code>let myFunc = add;
 let anotherResult = myFunc(10, 20);
@@ -254,6 +255,71 @@ print anotherResult;
 let closureFunc = outer(10);
 print closureFunc(5);
 </code></pre>
+<h4>Supported Operations</h4>
+<li>Declaration</li>
+<pre><code>let add = alg(a, b) {
+    return a + b;
+};
+</code></pre>
+
+<li>Function Call</li>
+<pre><code>let result = add(3, 5);
+print result; # Output: 8
+</code></pre>
+
+<li>Assignment</li>
+<pre><code>let myFunc = add;
+let anotherResult = myFunc(10, 20);
+print anotherResult; # Output: 30
+</code></pre>
+
+<li>Closures</li>
+<pre><code>let outer = alg(x) {
+    let inner = alg(y) {
+        return x + y;
+    };
+    return inner;
+};
+
+let closureFunc = outer(10);
+print closureFunc(5); # Output: 15
+</code></pre>
+
+<li>Recursion</li>
+<pre><code>let factorial = alg(n) {
+    if n == 0 {
+        return 1;
+    }
+    return n * factorial(n - 1);
+};
+
+let result = factorial(5);
+print result; # Output: 120
+</code></pre>
+
+<li><strong>Novel Feature: Functional Addition</strong></li>
+<p>Our language supports functional addition, allowing you to combine functions using the <code>+</code> operator.</p>
+<pre><code>let fn1 = alg(a) {
+    return a + 1;
+};
+let fn2 = alg(a) {
+    return a + 2;
+};
+let fn3 = fn1 + fn2;
+print fn3(5); # Output: 8
+</code></pre>
+
+<li><strong>Novel Feature: Function Multiplication</strong></li>
+<p>Our language supports function multiplication, allowing you to compose functions using the <code>*</code> operator.</p>
+<pre><code>let fn1 = alg(a) {
+    return a + 1;
+};
+let fn2 = fn1*5;
+
+print fn2(5); # Output: 10
+</code></pre>
+</ul>
+
     </div>
 
     <div id="data-structures" class="content-page">
@@ -372,7 +438,6 @@ print keys; # Output: ["name", "age"]
 x = "Hello"; # x is now a string
 print x;
 </code></pre>
-        <p>Explain the benefits and drawbacks of dynamic typing, and how the interpreter handles type conversions and errors.</p>
         <h3>Dynamic/Lexical Scoping</h3>
         <p>When the code is interpreted, the scoping is dynamic. When the code is compiled, the scoping is lexical.</p>
         <p>Dynamic Scoping: Variables are looked up in the scope where the function is called.</p>
@@ -397,7 +462,6 @@ let outer = alg() {
 };
 outer(); # Output: 20 (lexical scoping when compiled)
 </code></pre>
-        <p>Explain the differences between dynamic and lexical scoping, and how they affect variable access and function behavior.</p>
     </div>
 
     <div id="advanced" class="content-page">
@@ -406,15 +470,15 @@ outer(); # Output: 20 (lexical scoping when compiled)
         <h3>Run-Time Type Checking</h3>
         <p>The interpreter performs run-time type checking to ensure that operations are performed on compatible data types. If a type mismatch occurs, an error is raised.</p>
         <h3>Extendable Interpreter Functionality (SysCalls)</h3>
-        <p>You can extend the interpreter with user-defined SysCalls to add custom functionality. Explain how to define and use SysCalls.</p>
+        <p>You can extend the interpreter with user-defined SysCalls to add custom functionality.</p>
         <h3>AST Visualization (Graphviz)</h3>
-        <p>The Abstract Syntax Tree (AST) of your code can be visualized using Graphviz, helping you understand the structure of your program. Provide instructions on how to generate and view the AST.</p>
+        <p>The Abstract Syntax Tree (AST) of your code can be visualized using Graphviz, helping you understand the structure of your program.</p>
         <h3>Basic Plotting (Termplotlib)</h3>
-        <p>You can create simple plots in the terminal using Termplotlib. Explain how to use the plotting functions.</p>
+        <p>You can create simple plots in the terminal using Termplotlib.</p>
         <h3>Syntax Highlighting</h3>
-        <p>Our language supports syntax highlighting in the terminal using escape sequences and in VS Code using the AlgSyn extension, making your code easier to read. Provide instructions on how to enable syntax highlighting.</p>
+        <p>Our language supports syntax highlighting in the terminal using escape sequences and in VS Code using the AlgSyn extension, making your code easier to read.</p>
         <h3>Compilation to MIPS32 (Virtual Machine)</h3>
-        <p>Your code can be compiled to MIPS32 assembly and run on our custom virtual machine. Explain the compilation process and how to run the compiled code.</p>
+        <p>Your code can be compiled to MIPS32 assembly and run on our custom virtual machine.</p>
     </div>
 
     <div id="examples" class="content-page">
