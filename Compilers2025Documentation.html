@@ -70,7 +70,7 @@ code {
 
 <div id="index-sidebar">
     <h1>Algolang</h1>
-    <img src="logo.jpg" alt="Language Logo">
+    <img src="COMPILERS_IMG/logo.jpg" alt="Language Logo">
     <ul class="index-list">
         <li><a href="#index">Welcome</a></li>
         <li><a href="#getting-started">Getting Started</a></li>
@@ -81,7 +81,9 @@ code {
         <li><a href="#data-structures">Data Structures</a></li>
         <li><a href="#typing-scoping">Typing & Scoping</a></li>
         <li><a href="#advanced">Advanced Features</a></li>
-        <li><a href="#isa">Instructions for VM</a></li>
+        <li><a href="#quantum-instructions">Quantum Instructions</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#toolchains">Toolchains</a></li>
         <li><a href="#future">Future Directions</a></li>
         <li><a href="#decisions">Design Decisions</a></li>
         <li><a href="#examples">Examples</a></li>
@@ -92,7 +94,7 @@ code {
 
     <div id="index" class="content-page active">
         <h2 style="text-align: center;">Welcome to Algolang!</h2>
-        <img src="logo.jpg" alt="Language Logo" style="display: block; margin: 0 auto 20px; max-width: 200px;">
+        <img src="COMPILERS_IMG/logo.jpg" alt="Language Logo" style="display: block; margin: 0 auto 20px; max-width: 200px;">
         <p>This documentation serves as a comprehensive guide to understanding and utilizing Algolang. Whether you're a complete beginner or an experienced developer, this guide aims to provide you with the necessary tools and knowledge to effectively write and execute programs.</p>
         <p>Our language is designed with simplicity in mind, allowing you to focus on solving problems rather than getting stuck in complex syntax. The left sidebar contains an index of topics, each covering a specific aspect of the language. We encourage you to explore each section in order to gain a thorough understanding of the language's capabilities.</p>
         <p>Language Designers</p>
@@ -154,6 +156,16 @@ let isReady; # Declaration without initialization
         <p>Strings are sequences of characters enclosed in single or double quotes. The string should support either single or double quotes. There are come more string operations supported like concatenation, indexing, discussed in the Data Structures page. nl is a special character for newline.</p>
         <h3>Booleans</h3>
         <p>Booleans represent true or false values. They are used in conditional statements and logical operations.</p>
+        <!-- TYPECASTING: int, float, int2str, str -->
+        <h3>Typecasting</h3>
+        <p>Typecasting allows you to convert one data type to another. The following functions are supported:</p>
+        <ul>
+            <li><code>int(x)</code>: Converts <code>x</code> to an integer.</li>
+            <li><code>float(x)</code>: Converts <code>x</code> to a float.</li>
+            <li><code>int2str(x)</code>: Converts an integer to a string.</li>
+            <li><code>str(x)</code>: Converts any value to a string.</li>
+        </li>
+
     </div>
 
     <div id="operators" class="content-page">
@@ -348,7 +360,12 @@ print length; # Output: 13
         <pre><code>let message = "Hello, World!";
 print message[7]; # Output: W
 </code></pre>
-        <h3>Lists and Vectors</h3>
+<li>Conversion to Lists</li>
+<pre><code>let message = "Hello, World!";
+    let charList = list(message);
+print message[7]; # Output: W
+</code></pre>
+<h3>Lists and Vectors</h3>
         <p>Lists are ordered collections of items. You can access elements by their index, starting from 0.</p>
         <pre><code>let myList = {1, 2, 3, 4, 5}; # Create a list
 print myList[0]; # Output: 1
@@ -373,6 +390,27 @@ print myList; # Output: {1, 2, 10, 4, 5}
 let list2 = {4, 5, 6};
 let combined = list1 + list2;
 print combined; # Output: {1, 2, 3, 4, 5, 6}
+</code></pre>
+<li>Length: Get the number of elements in a list.</li>
+<pre><code>let myList = {1, 2, 3, 4, 5};
+let length = len(myList);
+print length; # Output: 5
+</code></pre>
+<li>Split: Split a string into a list of characters.</li>
+<pre><code>let myString = "Hello";
+let charList = myString.split();
+print charList; # Output: {H, e, l, l, o}
+</code></pre>
+<li>Push: Add an element to the end of a list.</li>
+<pre><code>let myList = {1, 2, 3};
+myList.push(4);
+print myList; # Output: {1, 2, 3, 4}
+</code></pre>
+<li>Pop: Remove the last element from a list.</li>
+<pre><code>let myList = {1, 2, 3, 4};
+let lastElement = myList.pop();
+print lastElement; # Output: 4
+print myList; # Output: {1, 2, 3}
 </code></pre>
 
 <h3>Vectors</h3>
@@ -465,7 +503,41 @@ let outer = alg() {
 outer(); # Output: 20 (lexical scoping when compiled)
 </code></pre>
     </div>
-
+    <div id="quantum-instructions" class="content-page">
+        <h2>Quantum Instructions</h2>
+        <p>Algolang supports basic quantum computing operations through both its interpreter and compiler. This section explains how quantum instructions are handled in each mode.</p>
+    
+        <h3>Interpreter: Qiskit Simulation</h3>
+        <p>The interpreter uses IBM's Qiskit library to simulate quantum operations. The following quantum gates and operations are supported:</p>
+        <ul>
+            <li><code>QG</code>: Apply a quantum gate (e.g., <code>h</code>, <code>x</code>, <code>cnot</code>, <code>cp</code>).</li>
+            <li><code>measure</code>: Measure a qubit and collapse its state.</li>
+            <li><code>clearQ</code>: Reset all qubits to the |0⟩ state.</li>
+            <li><code>drawQC</code>: Visualize the quantum circuit using Qiskit's circuit drawing functionality.</li>
+        </ul>
+        <p>These operations allow users to simulate quantum circuits and observe their behavior directly in the interpreter.</p>
+    
+        <h3>Compiler: Custom Co-Processor 2 Instructions</h3>
+        <p>The compiler targets a custom "co-processor 2" instruction set for basic quantum computing operations. These instructions are designed to work with a simulated 5-qubit state vector and include:</p>
+        <ul>
+            <li><code>QG</code>: Apply a quantum gate (e.g., <code>h</code>, <code>x</code>, <code>cnot</code>, <code>cp</code>).</li>
+            <li><code>measure</code>: Measure a qubit and retrieve its classical value.</li>
+            <li><code>clearQ</code>: Reset all qubits to the |0⟩ state.</li>
+        </ul>
+        <p>These instructions enable efficient simulation of quantum operations in a classical environment.</p>
+    
+        <h3>Simulated Quantum Instructions</h3>
+        <p>The following quantum instructions are supported and act on a simulated 5-qubit state vector:</p>
+        <ul>
+            <li><code>h</code>: Apply the Hadamard gate to create superposition.</li>
+            <li><code>x</code>: Apply the Pauli-X (NOT) gate to flip a qubit's state.</li>
+            <li><code>cnot</code>: Apply the controlled-NOT gate to entangle qubits.</li>
+            <li><code>measure</code>: Measure a qubit and collapse its state.</li>
+            <li><code>reset</code>: Reset a qubit to the |0⟩ state.</li>
+            <li><code>cp</code>: Apply a controlled phase gate.</li>
+        </ul>
+        <p>These instructions allow users to simulate quantum algorithms and understand the behavior of quantum gates and measurements.</p>
+    </div>
     <div id="advanced" class="content-page">
         <h2>Advanced Features</h2>
         <p>Our language offers several advanced features to enhance your programming experience.</p>
@@ -487,7 +559,7 @@ outer(); # Output: 20 (lexical scoping when compiled)
         <h2>Key Design Decisions and Innovations</h2>
         <p>Our language was designed with simplicity and innovation in mind. Here are some key design decisions that influenced the development of Algolang.</p>
     <ul>
-        <li>Dynamic Typing: We chose dynamic typing to allow flexibility in variable declarations and assignments without the need for explicit type annotations.</li>
+        <li>Typing: We chose dynamic typing in interpreted mode, with runtime type checking. It is also statically scoped when compiled.</li>
         <li>Dynamic/Lexical Scoping: We implemented dynamic scoping when interpreted and lexical scoping when compiled to provide a balance between flexibility and predictability.</li>
         <li>Lists and Vectors: We introduced lists and vectors to support collections of data and provide a convenient way to store and manipulate values.</li>
         <li>Run-Time Type Checking: We included run-time type checking to catch type errors early and ensure safe and consistent behavior.</li>
@@ -503,12 +575,66 @@ outer(); # Output: 20 (lexical scoping when compiled)
     </ul>
 
     </div>
-
+    <div id="toolchains" class="content-page">
+        <h2>Toolchain</h2>
+        <p>The AlgoLang project includes several components:</p>
+    
+        <h3>Interpreter (SYNTAX.py, RUN.py, SHELL.py)</h3>
+        <ul>
+            <li>Executes AlgoLang code directly using a tree-walking approach.</li>
+            <li><strong>SHELL.py</strong> provides an interactive REPL (Read-Eval-Print Loop) with features like syntax highlighting, command history, and basic keyword completion using <code>prompt_toolkit</code>. 
+                <ul>
+                    <li>Press <code>Ctrl+J</code> to evaluate a command and <code>Ctrl+C</code> to exit.</li>
+                </ul>
+            </li>
+            <img src="COMPILERS_IMG/q.png" alt="SHELL.png" style="width: 100%; height: auto;">
+            <li><strong>SYNTAX.py</strong> has an argument <code>vis</code> which, if set to <code>True</code>, will create a PNG image for the AST of the program.</li>
+            <img src="COMPILERS_IMG/Syn.png" alt="AST.png" style="width: 100%; height: auto;">
+        </ul>
+    
+        <h3>Compiler (COM.py)</h3>
+        <ul>
+            <li>Compiles AlgoLang source files (<code>.algl</code>) into MIPS assembly code (<code>.s</code>).</li>
+            <li>Supports output format compatible with both SPIM (<code>spim</code>) or the custom <code>EXE.c</code> simulator (VM).</li>
+        </ul>
+    
+        <h3>Assembler (ASM.py)</h3>
+        <ul>
+            <li>Assembles the generated MIPS <code>.s</code> file into <code>.hex</code> machine code suitable for the <code>EXE.c</code> simulator.</li>
+            <li>Prints the conversion to the terminal with colored and interpretable binary values for each instruction.</li>
+            <li>Supports a MIPS I instruction set plus FPU (COP1) and custom Quantum (COP2) instructions.</li>
+            <li>Handles common MIPS pseudo-instructions like <code>move</code>, <code>li</code>, <code>la</code>, <code>sgt</code> by expanding them into base instructions.</li>
+        </ul>
+        <img src="COMPILERS_IMG/assembler.png" alt="ASM.png" style="width: 100%; height: auto;">
+    
+        <h3>Disassembler (DAS.c)</h3>
+        <ul>
+            <li>Converts the <code>.hex</code> file back to <code>.s</code> code.</li>
+            <li>The disassembler output can be cleaned using <code>clean.py</code> and then run on SPIM.</li>
+            <li>Primarily used for debugging the tools and not intended for final use.</li>
+        </ul>
+    
+        <h3>Simulator (EXE.c)</h3>
+        <p>A custom MIPS Virtual Machine that executes <code>.hex</code> files generated by <code>ASS.py</code>. This has three parts:</p>
+        <ul>
+            <li><strong>Core:</strong> Executes MIPS I integer instructions.</li>
+            <li><strong>COP1:</strong> Executes single-precision floating-point operations (e.g., <code>add.s</code>, <code>sub.s</code>, <code>mul.s</code>, <code>div.s</code>, <code>cvt.s.w</code>, <code>cvt.w.s</code>, <code>mov.s</code>), loads/stores (<code>l.s</code>, <code>s.s</code>), and data movement (<code>mfc1</code>, <code>mtc1</code>).</li>
+            <li><strong>COP2:</strong> Simulates custom quantum instructions (<code>h</code>, <code>x</code>, <code>cnot</code>, <code>measure</code>, <code>reset</code>, <code>cp</code>) acting on a simulated 5-qubit state vector.</li>
+            <li><strong>Memory Model:</strong> Implements a segmented memory space (Code, Data, Stack, Heap, PPT) with dynamic memory allocation and resizing for the Heap and Parent Pointer Tree (PPT) segments.</li>
+            <li><strong>Syscalls:</strong> Handles standard SPIM-like syscalls for I/O (printing/reading integers, floats, strings) and exiting.</li>
+            <li><strong>Debugging (-d / --debug):</strong> Enables instruction-by-instruction execution tracing, showing the PC, instruction hex, and register states.</li>
+            <li><strong>Profiling (-p / --profile):</strong> Counts the number of executed instructions categorized by type (R, I, J, COP1, COP2, Syscall, Other) and prints a summary upon completion.</li>
+        </ul>
+    
+        <h3>Helper Scripts</h3>
+        <ul>
+            <li><strong>run.sh:</strong> Compiles an AlgoLang file using <code>COM.py</code> and executes the resulting <code>.s</code> file using the SPIM simulator.</li>
+            <li><strong>chain.sh:</strong> Compiles (<code>COM.py</code>), assembles (<code>ASS.py</code>), and runs (<code>EXE.c</code>) an AlgoLang file.</li>
+        </ul>
+    </div>
     <div id="future" class="content-page">
         <h2>Future Development</h2>
     <ul>
-        <li>Quantum VM: We want to explore the possibility of compiling Algolang to a quantum virtual machine to leverage quantum computing capabilities as well as support for quantum gate level operations.</li>
-        <li>Two Modes of Operation: Quantum + Classical mode of operation will be supported by Python based VM, while the C based VM, focussed on performance, will support only classical operations.</li>
         <li>Development of a Coding Application: We plan to develop a coding application that integrates Algolang with a user-friendly interface, code editor, and the interpreter/compiler to enhance the development experience.</li>
         <li>More libraries: We plan to add more libraries to support advanced data structures, algorithms, and mathematical operations.</li>
         <li>Optimization: We aim to optimize the interpreter and compiler to improve performance and reduce execution time.</li>
@@ -516,18 +642,45 @@ outer(); # Output: 20 (lexical scoping when compiled)
 
     </div>
 
-    <div id="isa" class="content-page">
-        <h2 style="text-align: center;">Virtual Machine: Instruction Set Architecture</h2>
-        <br>
-        <p>We are currently compiling to a the set of instructions that are similar to MIPS32 and are displayed below:</p>
-        <br>
-        <iframe class="pdf" 
-                src="Spim_instr_set.pdf"
-            width="800" height="500" style="border: none; margin: 0 auto; display: block;">
-        </iframe>
-        <p style="font-size: smaller;text-align: center;"><a href="https://eclass.hmu.gr/modules/document/file.php/TP238/%CE%92%CE%BF%CE%B7%CE%B8%CE%AE%CE%BC%CE%B1%CF%84%CE%B1/Spim_instr_set.pdf">Reference</a></p>
+    <div id="usage" class="content-page">
+        <h2>Usage</h2>
+    
+        <h3>Running Interpreter</h3>
+        <p><strong>Run a file directly:</strong></p>
+        <pre><code>python3 RUN.py your_script.algl</code></pre>
+        <p><strong>Start the interactive shell:</strong></p>
+        <pre><code>python3 SHELL.py</code></pre>
+        <p>Inside the shell, type code, press Enter for new lines, and <code>Ctrl+J</code> to evaluate. Type <code>exit</code> or <code>quit</code> to leave.</p>
+    
+        <h3>Compiling and Running with VM</h3>
+        <p><strong>With SPIM:</strong></p>
+        <pre><code>./run.sh your_script.algl</code></pre>
+        <p>This uses <code>COM.py</code> to generate <code>your_script.s</code> and runs it with <code>spim</code>.</p>
+        <p><strong>With Custom Simulator (EXE.c):</strong></p>
+        <pre><code>./chain.sh your_script.algl</code></pre>
+        <p>This uses <code>COM.py</code> → <code>ASS.py</code> → <code>EXE.c</code> to compile, assemble, and run the code. <code>EXE.c</code> is compiled automatically to the executable:</p>
+        <pre><code>gcc EXE.c -o EXE -lm -std=c99 -Wall</code></pre>
+    
+        <h3>Debugging and Profiling (with EXE.c)</h3>
+        <p><strong>Debug Mode:</strong> See register states at each step.</p>
+        <pre><code># First compile and assemble
+    python3 COM.py your_script.algl --format VM
+    python3 ASS.py your_script.s
+    # Then run EXE with -d
+    ./EXE -d your_script.hex</code></pre>
+    
+        <p><strong>Profile Mode:</strong> Get instruction execution statistics.</p>
+        <pre><code># First compile and assemble
+    python3 COM.py your_script.algl --format VM
+    python3 ASS.py your_script.s
+    # Then run EXE with -p
+    ./EXE -p your_script.hex</code></pre>
+        <p><strong>Note:</strong> Debug (<code>-d</code>) and Profile (<code>-p</code>) flags can be used together.</p>
+    
+        <h3>Syntax Highlighting</h3>
+        <p><strong>Terminal:</strong> The interpreter (<code>RUN.py</code>) and interactive shell (<code>SHELL.py</code>) provide syntax highlighting in terminals supporting ANSI escape codes.</p>
+        <p><strong>VS Code:</strong> A VS Code extension named <code>AlgSyn</code> is available for syntax highlighting <code>.algl</code> files.</p>
     </div>
-
 
     <div id="examples" class="content-page">
         <h2>Examples</h2>

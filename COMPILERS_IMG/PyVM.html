@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module PyVM</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">PyVM</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/jaidev/Downloads/Compilers-Project-2025-main%282%29/Compilers-Project-2025-main/MainCode/PyVM.py">/home/jaidev/Downloads/Compilers-Project-2025-main(2)/Compilers-Project-2025-main/MainCode/PyVM.py</a></td></tr></table>
+    <p><span class="code">PyVM.py:&nbsp;MIPS&nbsp;Simulator&nbsp;with&nbsp;Quantum&nbsp;Extensions<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;implements&nbsp;a&nbsp;MIPS&nbsp;simulator&nbsp;in&nbsp;Python,&nbsp;capable&nbsp;of&nbsp;executing<br>
+a&nbsp;subset&nbsp;of&nbsp;MIPS&nbsp;assembly&nbsp;instructions,&nbsp;including&nbsp;integer&nbsp;arithmetic,&nbsp;memory&nbsp;access,<br>
+control&nbsp;flow,&nbsp;floating-point&nbsp;operations&nbsp;(FPU),&nbsp;and&nbsp;system&nbsp;calls&nbsp;(syscalls).<br>
+It&nbsp;also&nbsp;includes&nbsp;extensions&nbsp;to&nbsp;simulate&nbsp;basic&nbsp;quantum&nbsp;computing&nbsp;operations<br>
+on&nbsp;a&nbsp;small&nbsp;number&nbsp;of&nbsp;qubits&nbsp;using&nbsp;NumPy.<br>
+&nbsp;<br>
+The&nbsp;simulator&nbsp;uses&nbsp;byte&nbsp;addressing&nbsp;for&nbsp;memory&nbsp;and&nbsp;the&nbsp;program&nbsp;counter&nbsp;(PC),<br>
+starting&nbsp;code&nbsp;execution&nbsp;from&nbsp;address&nbsp;0x00400000&nbsp;by&nbsp;default&nbsp;or&nbsp;from&nbsp;the&nbsp;'main'&nbsp;label.<br>
+It&nbsp;parses&nbsp;assembly&nbsp;files&nbsp;containing&nbsp;.text&nbsp;and&nbsp;.data&nbsp;segments,&nbsp;handling&nbsp;common<br>
+directives&nbsp;like&nbsp;.word,&nbsp;.float,&nbsp;and&nbsp;.asciiz.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="math.html">math</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+</td><td class="multicolumn"><a href="struct.html">struct</a><br>
+<a href="sys.html">sys</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="PyVM.html#MIPS_Simulator">MIPS_Simulator</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="MIPS_Simulator">class <strong>MIPS_Simulator</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Simulates&nbsp;a&nbsp;MIPS&nbsp;processor&nbsp;with&nbsp;quantum&nbsp;extensions.<br>
+&nbsp;<br>
+Manages&nbsp;the&nbsp;simulator&nbsp;state&nbsp;including&nbsp;registers,&nbsp;memory,&nbsp;program&nbsp;counter,<br>
+and&nbsp;the&nbsp;quantum&nbsp;state&nbsp;vector.&nbsp;Parses&nbsp;and&nbsp;executes&nbsp;MIPS&nbsp;assembly&nbsp;code.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="MIPS_Simulator-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initializes&nbsp;the&nbsp;MIPS&nbsp;simulator&nbsp;state&nbsp;(registers,&nbsp;memory,&nbsp;pc,&nbsp;etc.).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-add"><strong>add</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;add:&nbsp;Add&nbsp;(signed,&nbsp;with&nbsp;32-bit&nbsp;wrapping).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-add_s"><strong>add_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;add.s:&nbsp;Floating-Point&nbsp;Add&nbsp;(Single).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-addi"><strong>addi</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;addi:&nbsp;Add&nbsp;Immediate&nbsp;(16-bit&nbsp;signed&nbsp;immediate).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-and_"><strong>and_</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;and:&nbsp;Bitwise&nbsp;AND.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-andi"><strong>andi</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;andi:&nbsp;Bitwise&nbsp;AND&nbsp;Immediate&nbsp;(16-bit&nbsp;zero-extended).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-beq"><strong>beq</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;beq:&nbsp;Branch&nbsp;on&nbsp;Equal.&nbsp;Returns&nbsp;True&nbsp;if&nbsp;branch&nbsp;taken.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-bne"><strong>bne</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;bne:&nbsp;Branch&nbsp;on&nbsp;Not&nbsp;Equal.&nbsp;Returns&nbsp;True&nbsp;if&nbsp;branch&nbsp;taken.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-cnot"><strong>cnot</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;CNOT:&nbsp;Applies&nbsp;Controlled-NOT&nbsp;gate.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-cvt_s_w"><strong>cvt_s_w</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;cvt.s.w&nbsp;Fd,&nbsp;Fs:&nbsp;Convert&nbsp;Integer&nbsp;in&nbsp;Fs&nbsp;to&nbsp;Single&nbsp;Float&nbsp;in&nbsp;Fd.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-cvt_w_s"><strong>cvt_w_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;cvt.w.s:&nbsp;Convert&nbsp;Single&nbsp;Float&nbsp;in&nbsp;Rs&nbsp;to&nbsp;Word&nbsp;Integer&nbsp;bits&nbsp;in&nbsp;Rd&nbsp;(Truncate).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-div_s"><strong>div_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;div.s:&nbsp;Floating-Point&nbsp;Divide&nbsp;(Single).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-float_to_int_bits"><strong>float_to_int_bits</strong></a>(self, f)</dt><dd><span class="code">Converts&nbsp;Python&nbsp;float&nbsp;to&nbsp;its&nbsp;32-bit&nbsp;integer&nbsp;bit&nbsp;representation&nbsp;(big-endian).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-h"><strong>h</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;H:&nbsp;Applies&nbsp;Hadamard&nbsp;gate.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-int_bits_to_float"><strong>int_bits_to_float</strong></a>(self, i)</dt><dd><span class="code">Converts&nbsp;32-bit&nbsp;integer&nbsp;bit&nbsp;representation&nbsp;back&nbsp;to&nbsp;float&nbsp;(big-endian).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-j"><strong>j</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;j:&nbsp;Jump.&nbsp;Returns&nbsp;True.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-jal"><strong>jal</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;jal:&nbsp;Jump&nbsp;and&nbsp;Link.&nbsp;Returns&nbsp;True.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-jr"><strong>jr</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;jr:&nbsp;Jump&nbsp;Register.&nbsp;Returns&nbsp;True.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-l_s"><strong>l_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;l.s:&nbsp;Load&nbsp;Floating-Point&nbsp;Single.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-la"><strong>la</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;la:&nbsp;Load&nbsp;Address&nbsp;(pseudo-instruction).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-lb"><strong>lb</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;lb:&nbsp;Load&nbsp;Byte&nbsp;(sign-extended).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-li"><strong>li</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;li:&nbsp;Load&nbsp;Immediate&nbsp;(32-bit)&nbsp;(pseudo-instruction).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-load_program"><strong>load_program</strong></a>(self, program)</dt><dd><span class="code">Loads&nbsp;and&nbsp;parses&nbsp;a&nbsp;MIPS&nbsp;assembly&nbsp;program&nbsp;string,&nbsp;resetting&nbsp;the&nbsp;simulator&nbsp;state.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;program&nbsp;(str):&nbsp;The&nbsp;MIPS&nbsp;assembly&nbsp;code&nbsp;as&nbsp;a&nbsp;multi-line&nbsp;string.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-lw"><strong>lw</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;lw:&nbsp;Load&nbsp;Word.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-measure"><strong>measure</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;measure:&nbsp;Measures&nbsp;qubit,&nbsp;collapses&nbsp;state,&nbsp;stores&nbsp;result&nbsp;in&nbsp;$s9.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mfc1"><strong>mfc1</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mfc1:&nbsp;Move&nbsp;Word&nbsp;From&nbsp;Coprocessor&nbsp;1&nbsp;(FPU).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mfhi"><strong>mfhi</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mfhi:&nbsp;Move&nbsp;From&nbsp;HI.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mflo"><strong>mflo</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mflo:&nbsp;Move&nbsp;From&nbsp;LO.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mov_s"><strong>mov_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mov.s:&nbsp;Move&nbsp;Floating-Point&nbsp;Single.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-move"><strong>move</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;the&nbsp;'move'&nbsp;pseudo-instruction&nbsp;(implemented&nbsp;as&nbsp;add&nbsp;dest,&nbsp;src,&nbsp;$zero).<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;operands&nbsp;(list[str]):&nbsp;Expected&nbsp;format:&nbsp;[dest_reg,&nbsp;src_reg]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;False,&nbsp;as&nbsp;move&nbsp;does&nbsp;not&nbsp;branch.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mtc1"><strong>mtc1</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mtc1:&nbsp;Move&nbsp;Word&nbsp;To&nbsp;Coprocessor&nbsp;1&nbsp;(FPU).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mul_s"><strong>mul_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mul.s:&nbsp;Floating-Point&nbsp;Multiply&nbsp;(Single).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-mult"><strong>mult</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;mult:&nbsp;Multiply&nbsp;(signed&nbsp;32-&gt;64&nbsp;bit).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-nor"><strong>nor</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;nor:&nbsp;Bitwise&nbsp;NOR.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-or_"><strong>or_</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;or:&nbsp;Bitwise&nbsp;OR.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-ori"><strong>ori</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;ori:&nbsp;Bitwise&nbsp;OR&nbsp;Immediate&nbsp;(16-bit&nbsp;zero-extended).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-parse_program"><strong>parse_program</strong></a>(self, lines)</dt><dd><span class="code">Parses&nbsp;assembly&nbsp;lines&nbsp;into&nbsp;data&nbsp;and&nbsp;instruction&nbsp;segments.<br>
+(Fix&nbsp;3:&nbsp;Complete&nbsp;restructure&nbsp;to&nbsp;handle&nbsp;data&nbsp;segment&nbsp;labels&nbsp;and&nbsp;directives)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lines&nbsp;(list[str]):&nbsp;A&nbsp;list&nbsp;of&nbsp;assembly&nbsp;code&nbsp;lines.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-print_data_segment"><strong>print_data_segment</strong></a>(self)</dt><dd><span class="code">Prints&nbsp;labels&nbsp;defined&nbsp;in&nbsp;the&nbsp;.data&nbsp;segment.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-print_memory"><strong>print_memory</strong></a>(self, limit=32)</dt><dd><span class="code">Prints&nbsp;a&nbsp;limited&nbsp;view&nbsp;of&nbsp;memory&nbsp;words&nbsp;containing&nbsp;data.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-print_quantum_state"><strong>print_quantum_state</strong></a>(self)</dt><dd><span class="code">Prints&nbsp;the&nbsp;quantum&nbsp;state&nbsp;vector.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-print_registers"><strong>print_registers</strong></a>(self)</dt><dd><span class="code">Prints&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;integer&nbsp;and&nbsp;floating-point&nbsp;registers.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-reset"><strong>reset</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;reset:&nbsp;Resets&nbsp;qubit&nbsp;to&nbsp;|0&gt;&nbsp;via&nbsp;measure&nbsp;and&nbsp;conditional&nbsp;X.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-run"><strong>run</strong></a>(self, summary=False)</dt><dd><span class="code">Executes&nbsp;the&nbsp;loaded&nbsp;MIPS&nbsp;assembly&nbsp;program&nbsp;instruction&nbsp;by&nbsp;instruction.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;summary&nbsp;(bool):&nbsp;If&nbsp;True,&nbsp;prints&nbsp;execution&nbsp;summary&nbsp;statistics&nbsp;at&nbsp;the&nbsp;end.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-s_s"><strong>s_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;s.s:&nbsp;Store&nbsp;Floating-Point&nbsp;Single.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sb"><strong>sb</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sb:&nbsp;Store&nbsp;Byte.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sgt"><strong>sgt</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sgt:&nbsp;Set&nbsp;on&nbsp;Greater&nbsp;Than&nbsp;(signed)&nbsp;(pseudo-instruction).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sll"><strong>sll</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sll:&nbsp;Shift&nbsp;Left&nbsp;Logical.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sllv"><strong>sllv</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sllv:&nbsp;Shift&nbsp;Left&nbsp;Logical&nbsp;Variable.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-slt"><strong>slt</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;slt:&nbsp;Set&nbsp;on&nbsp;Less&nbsp;Than&nbsp;(signed).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-srl"><strong>srl</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;srl:&nbsp;Shift&nbsp;Right&nbsp;Logical.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-srlv"><strong>srlv</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;srlv:&nbsp;Shift&nbsp;Right&nbsp;Logical&nbsp;Variable.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sub"><strong>sub</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sub:&nbsp;Subtract&nbsp;(signed,&nbsp;with&nbsp;32-bit&nbsp;wrapping).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sub_s"><strong>sub_s</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sub.s:&nbsp;Floating-Point&nbsp;Subtract&nbsp;(Single).</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-sw"><strong>sw</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;sw:&nbsp;Store&nbsp;Word.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-syscall"><strong>syscall</strong></a>(self, *args)</dt><dd><span class="code">Handles&nbsp;the&nbsp;syscall&nbsp;instruction&nbsp;based&nbsp;on&nbsp;the&nbsp;code&nbsp;in&nbsp;$v0.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;or&nbsp;None:&nbsp;"exit"&nbsp;if&nbsp;syscall&nbsp;10,&nbsp;"error"&nbsp;on&nbsp;failure,&nbsp;None&nbsp;otherwise.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-x"><strong>x</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;X:&nbsp;Applies&nbsp;Pauli-X&nbsp;(NOT)&nbsp;gate.</span></dd></dl>
+
+<dl><dt><a name="MIPS_Simulator-xori"><strong>xori</strong></a>(self, operands)</dt><dd><span class="code">Handles&nbsp;xori:&nbsp;Bitwise&nbsp;XOR&nbsp;Immediate&nbsp;(16-bit&nbsp;zero-extended).</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>CODE_BASE_ADDRESS</strong> = 4194304<br>
+<strong>DATA_BASE_ADDRESS</strong> = 268500992<br>
+<strong>H_GATE</strong> = array([[ 0.70710678+0.j,  0.70710678+0.j],
+       [ 0.70710678+0.j, -0.70710678+0.j]])<br>
+<strong>NUM_QUBITS</strong> = 5<br>
+<strong>STACK_BASE_ADDRESS</strong> = 2147483644<br>
+<strong>STATE_SIZE</strong> = 32<br>
+<strong>X_GATE</strong> = array([[0.+0.j, 1.+0.j],
+       [1.+0.j, 0.+0.j]])</td></tr></table>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module LEXER</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">LEXER</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/jaidev/Downloads/Compilers-Project-2025-main%282%29/Compilers-Project-2025-main/MainCode/LEXER.py">/home/jaidev/Downloads/Compilers-Project-2025-main(2)/Compilers-Project-2025-main/MainCode/LEXER.py</a></td></tr></table>
+    <p><span class="code">This&nbsp;is&nbsp;the&nbsp;lexer&nbsp;module&nbsp;for&nbsp;AlgoLang.<br>
+This&nbsp;contains&nbsp;the&nbsp;DFA&nbsp;used&nbsp;to&nbsp;implement&nbsp;the&nbsp;lexer,&nbsp;list&nbsp;of&nbsp;keywords,<br>
+and&nbsp;funtions&nbsp;for&nbsp;syntax&nbsp;highlighting<br>
+&nbsp;<br>
+AUTHOR:&nbsp;Pranav&nbsp;Joshi<br>
+email&nbsp;:&nbsp;pranav.joshi@iitgn.ac.in<br>
+Roll&nbsp;&nbsp;:&nbsp;22110197</span></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-HighLight"><strong>HighLight</strong></a>(s)</dt></dl>
+ <dl><dt><a name="-TokensToStr"><strong>TokensToStr</strong></a>(tokens, color=False)</dt></dl>
+ <dl><dt><a name="-get_char_type"><strong>get_char_type</strong></a>(c)</dt></dl>
+ <dl><dt><a name="-lex"><strong>lex</strong></a>(s: str, keep_spaces=False, keep_comments=False)</dt></dl>
+ <dl><dt><a name="-remove_comments"><strong>remove_comments</strong></a>(s: str)</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>COLOR</strong> = {'"str': '<span class="repr">\x1b</span>[38;2;255;0;0m', "'str": '<span class="repr">\x1b</span>[38;2;255;0;0m', 'com': '<span class="repr">\x1b</span>[38;2;150;150;150m', 'float': '<span class="repr">\x1b</span>[38;2;0;255;0m', 'id': '<span class="repr">\x1b</span>[38;2;100;200;255m', 'int': '<span class="repr">\x1b</span>[38;2;0;255;0m', 'kw': '<span class="repr">\x1b</span>[38;2;255;170;170m', 'op1': '<span class="repr">\x1b</span>[38;2;255;255;0m', 'op12': '<span class="repr">\x1b</span>[38;2;255;255;0m', 'op1=': '<span class="repr">\x1b</span>[38;2;255;255;0m', ...}<br>
+<strong>COLOR_MAP_PT</strong> = {'"str': '#aa3232', "'str": '#aa3232', 'brak': '', 'com': '#969696', 'com_': '#969696', 'float': '#00ff00', 'id': '#64c8ff', 'id.': '#64c8ff', 'int': '#00ff00', 'kw': '#ffaa96', ...}<br>
+<strong>DFA</strong> = {'': ['int', 'id', 'float', 'brak', 'op1', 'op2', 'op2', '"str', "'str", None, None, 'com_', False], '"str': ['"str', '"str', '"str', '"str', '"str', '"str', '"str', 'str', '"str', '"str', '"str', '"str', '"str'], "'str": ["'str", "'str", "'str", "'str", "'str", "'str", "'str", "'str", 'str', "'str", "'str", "'str", "'str"], 'brak': [None, None, None, None, None, None, None, None, None, None, None, None, False], 'com': [None, None, None, None, None, None, None, None, None, None, None, None, False], 'com_': ['com_', 'com_', 'com_', 'com_', 'com_', 'com_', 'com_', 'com_', 'com_', 'com_', 'com', 'com_', 'com_'], 'float': ['float', False, False, None, None, None, None, None, None, None, None, None, False], 'id': ['id', 'id', 'id.', None, None, None, None, None, None, None, None, None, False], 'id.': [False, 'id', False, False, False, False, False, False, False, False, False, False, False], 'int': ['int', None, 'float', None, None, None, None, None, None, None, None, None, False], ...}<br>
+<strong>alphas</strong> = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_'<br>
+<strong>brak</strong> = '()[]{};,'<br>
+<strong>chartypes</strong> = ['0123456789', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_', '.', '()[]{};,', '+-&lt;&gt;*/', '%!/^', '=', '"', "'", ' <span class="repr">\t</span>', '<span class="repr">\n\r</span>', '#']<br>
+<strong>comS</strong> = '#'<br>
+<strong>digits</strong> = '0123456789'<br>
+<strong>dot</strong> = '.'<br>
+<strong>doublequotes</strong> = '"'<br>
+<strong>equal</strong> = '='<br>
+<strong>keywords</strong> = ['while', 'if', 'else', 'elif', 'in', 'and', 'or', 'not', 'print', 'delete', 'run', 'list', 'return', 'alg', 'with', 'vec', 'plot', 'breakloop', 'skipit', 'mod', ...]<br>
+<strong>newline</strong> = '<span class="repr">\n\r</span>'<br>
+<strong>op1</strong> = '+-&lt;&gt;*/'<br>
+<strong>op2</strong> = '%!/^'<br>
+<strong>singlequotes</strong> = "'"<br>
+<strong>spaces</strong> = ' <span class="repr">\t</span>'</td></tr></table>
+</body></html>
