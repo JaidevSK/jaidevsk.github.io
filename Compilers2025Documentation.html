@@ -119,8 +119,9 @@ code {
             <li><strong>Running your first program:</strong><br>
                 <p>First create a file in text editor with <code>.algl</code> extension, write a simple "Hello, World!" program, and execute it using the interpreter or compiler.</p>
                 <pre><code>print "Hello, World!";</code></pre>
-                Run it with the command <pre><code>sh run.sh file_name</pre></code> for using it with the Compiler.
+                Run it with the command <pre><code>sh run.sh file_name</pre></code> for using it with the Compiler + SPIM.
                 Run it with the command <pre><code>python3 RUN.py file_name</pre></code> for using it with the Interpreter.
+                Run it with the command <pre><code>sh chain.sh file_name</pre></code> for using it with the Compiler + VM.
                 
                 <p>This will print Hello World! in the terminal.</p>
             </li>
@@ -135,6 +136,13 @@ print "Hello, " + name + "!";
 print "Hello, World!"; # This is another comment
 </code></pre>
 
+<li>File IO</li>
+<p>File input and output operations are supported. You can read from and write to files using the <code>read</code> or <code>write</code> function.</p>
+<pre><code>write(_file_name_, "Hello, File!");</code></pre>
+<pre><code>let content = read(_file_name_);</code></pre>
+
+<li>Imports</li>
+<p>To use external libraries or modules, you can import them using the <code>import filename</code> statement.</p>
         </ol>
     </div>
 
@@ -153,7 +161,7 @@ let isReady; # Declaration without initialization
         <h3>Floats</h3>
         <p>Floats are numbers with decimal points. They can be used to represent fractional values and perform operations like addition, subtraction, multiplication, and division.</p>
         <h3>Strings</h3>
-        <p>Strings are sequences of characters enclosed in single or double quotes. The string should support either single or double quotes. There are come more string operations supported like concatenation, indexing, discussed in the Data Structures page. nl is a special character for newline.</p>
+        <p>Strings are sequences of characters enclosed in single or double quotes. The string should support either single or double quotes. There are more string operations supported like concatenation, indexing, discussed in the Data Structures page. nl is a special character for newline.</p>
         <h3>Booleans</h3>
         <p>Booleans represent true or false values. They are used in conditional statements and logical operations.</p>
         <!-- TYPECASTING: int, float, int2str, str -->
@@ -314,23 +322,23 @@ print result; # Output: 120
 <li><strong>Novel Feature: Functional Addition</strong></li>
 <p>Our language supports functional addition, allowing you to combine functions using the <code>+</code> operator.</p>
 <pre><code>let fn1 = alg(a) {
-    return a + 1;
+    print(a + 1);
 };
 let fn2 = alg(a) {
-    return a + 2;
+    print(a + 2);
 };
 let fn3 = fn1 + fn2;
-print fn3(5); # Output: 6
+print fn3(5); # Output: 6 7
 </code></pre>
 
 <li><strong>Novel Feature: Function Multiplication</strong></li>
 <p>Our language supports function multiplication, allowing you to compose functions using the <code>*</code> operator.</p>
 <pre><code>let fn1 = alg(a) {
-    return a + 1;
+    print(a + 1);
 };
 let fn2 = fn1*5;
 
-print fn2(5); # Output: 6
+print fn2(5); # Output: 6 6 6 6 6
 </code></pre>
 </ul>
 
@@ -358,11 +366,6 @@ print length; # Output: 13
 </code></pre>
         <li>Indexing: Access characters by index (assignment is not allowed in interpreted).</li>
         <pre><code>let message = "Hello, World!";
-print message[7]; # Output: W
-</code></pre>
-<li>Conversion to Lists</li>
-<pre><code>let message = "Hello, World!";
-    let charList = list(message);
 print message[7]; # Output: W
 </code></pre>
 <h3>Lists and Vectors</h3>
@@ -395,20 +398,20 @@ print combined; # Output: {1, 2, 3, 4, 5, 6}
 <pre><code>let myList = {1, 2, 3, 4, 5};
 let length = len(myList);
 print length; # Output: 5
-</code></pre>
+<!-- </code></pre>
 <li>Split: Split a string into a list of characters.</li>
 <pre><code>let myString = "Hello";
 let charList = myString.split();
 print charList; # Output: {H, e, l, l, o}
-</code></pre>
+</code></pre> -->
 <li>Push: Add an element to the end of a list.</li>
 <pre><code>let myList = {1, 2, 3};
-myList.push(4);
+push(myList, 4);
 print myList; # Output: {1, 2, 3, 4}
 </code></pre>
 <li>Pop: Remove the last element from a list.</li>
 <pre><code>let myList = {1, 2, 3, 4};
-let lastElement = myList.pop();
+let lastElement = pop(myList);
 print lastElement; # Output: 4
 print myList; # Output: {1, 2, 3}
 </code></pre>
@@ -684,7 +687,7 @@ outer(); # Output: 20 (lexical scoping when compiled)
 
     <div id="examples" class="content-page">
         <h2>Examples</h2>
-        <p>Here are some examples demonstrating various features of our language.</p>
+        <p>Here are some examples demonstrating the usage our language.</p>
         <pre><code># Example 1: Sum of numbers in a list
 let numbers = [1, 2, 3, 4, 5];
 let sum = 0;
