@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Heritage Quiz</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Define a custom, rich background for the Indian theme */
+        body {
+            background-color: #ffe6c1; /* Light Saffron/Cream */
+            background-image: url("Images/Background.png"); /* Saffron to Deep Red Gradient */
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Custom card styling with shadow */
+        .quiz-card {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the option buttons */
+        .option-button {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .option-button:hover:not(.selected) {
+            transform: translateY(-2px);
+            background-color: #fca5a5; /* Light Red/Pink on hover */
+        }
+
+        .option-button.selected {
+            border-color: #15803d; /* Dark Green Border for selection */
+            background-color: #dcfce7; /* Light Green background */
+            font-weight: 600;
+        }
+
+        /* Hide elements initially for script control */
+        #results-container {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div id="quiz-container" class="quiz-card w-full max-w-lg bg-white rounded-xl p-6 md:p-10 border-4 border-amber-500/50">
+
+        <h1 class="text-4xl font-bold text-center mb-6 text-red-800">
+            <i data-lucide="lotus" class="inline-block h-8 w-8 mr-2 text-amber-600"></i>
+            Arts of School Quiz  Gandhara and Mathura
+        </h1>
+
+        <!-- Quiz Questions Area -->
+        <div id="questions-area">
+            <!-- Questions will be dynamically rendered here -->
+        </div>
+
+        <!-- Submit Button -->
+        <div id="submit-div" class="text-center mt-8">
+            <button id="submit-btn" 
+                    class="w-full sm:w-auto px-6 py-3 bg-red-700 text-white font-semibold rounded-lg shadow-lg hover:bg-red-800 transition duration-300 transform hover:scale-[1.02] active:scale-100 disabled:opacity-50"
+                    onclick="submitQuiz()">
+                Submit Answers
+            </button>
+        </div>
+
+        <!-- Results Area -->
+        <div id="results-container" class="mt-8 text-center p-6 rounded-lg bg-emerald-50 border-2 border-emerald-400">
+            <h2 class="text-3xl font-bold text-emerald-800 mb-4">Quiz Complete!</h2>
+            <p id="score-text" class="text-2xl font-semibold mb-6 text-gray-700">
+                Your Score: <span class="text-emerald-600 font-extrabold">0/4</span>
+            </p>
+            <button id="retry-btn" 
+                    class="px-8 py-3 bg-amber-600 text-white font-semibold rounded-lg shadow-md hover:bg-amber-700 transition duration-300 transform hover:scale-[1.02] active:scale-100"
+                    onclick="retryQuiz()">
+                <i data-lucide="refresh-cw" class="inline-block h-5 w-5 mr-2"></i>
+                Retry Quiz
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Data structure for the quiz questions
+        const questions = [
+            {
+                id: 1,
+                question: "Which school of art does this belong to?",
+                image: "Images/Gandhara.jpeg", 
+                options: ["Mathura", "Gandhara"],
+                correctAnswer: "Gandhara",
+            },
+            {
+                id: 2,
+                question: "Which school of art does this belong to?",
+                image: "Images/Mathura.jpg", 
+                options: ["Mathura", "Gandhara"],
+                correctAnswer: "Mathura",
+            },
+            {
+                id: 3,
+                question: "Which school of art does this belong to?",
+                image: "Images/Old_Bamiyan.jpg",
+                options: ["Mathura", "Gandhara"],
+                correctAnswer: "Gandhara",
+            },
+            {
+                id: 4,
+                question: "Bonus Question: Which place did this Buddha Statue belong to?",
+                image: "Images/Bamiyan_Old_New.jpg",
+                options: ["Rajgir", "Kandahar", "Bamiyan", "Sarnath"],
+                correctAnswer: "Bamiyan",
+            }
+        ];
+
+        // Store user's selected answers (key: questionId, value: selectedOptionText)
+        let userAnswers = {};
+
+        const questionsArea = document.getElementById('questions-area');
+        const resultsContainer = document.getElementById('results-container');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitDiv = document.getElementById('submit-div');
+        const scoreText = document.getElementById('score-text');
+
+        /**
+         * Renders the quiz questions and options dynamically.
+         */
+        function renderQuiz() {
+            questionsArea.innerHTML = ''; // Clear previous questions
+            
+            questions.forEach((q, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'mb-8 p-4 border border-red-200 rounded-lg bg-red-50';
+                
+                // Question Text
+                let htmlContent = `
+                    <p class="text-xl font-semibold mb-3 text-red-700">Q${index + 1}: ${q.question}</p>
+                `;
+
+                // Image for Q1, Q2, Q3
+                if (q.image) {
+                    htmlContent += `
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <img src="${q.image}" alt="Question Image for Q${index + 1}" 
+                                 class="w-full h-auto object-cover rounded-lg border-2 border-amber-500"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/000000?text=Image+Unavailable';" />
+                        </div>
+                    `;
+                }
+
+                // Options Container (Grid for better layout, especially Q4)
+                htmlContent += `<div class="grid grid-cols-1 ${q.options.length > 2 ? 'sm:grid-cols-2' : ''} gap-3 mt-4">`;
+
+                q.options.forEach(option => {
+                    const isSelected = userAnswers[q.id] === option;
+                    
+                    htmlContent += `
+                        <button 
+                            data-question-id="${q.id}"
+                            data-option="${option}"
+                            onclick="selectOption(${q.id}, '${option.replace(/'/g, "\\'")}')"
+                            class="option-button 
+                                   w-full text-left p-3 border-2 border-red-300 rounded-lg 
+                                   hover:bg-red-100 text-gray-700
+                                   ${isSelected ? 'selected' : 'bg-white'}"
+                        >
+                            ${option}
+                        </button>
+                    `;
+                });
+                
+                htmlContent += '</div>';
+                questionElement.innerHTML = htmlContent;
+                questionsArea.appendChild(questionElement);
+            });
+            
+            // Re-render lucide icons
+            lucide.createIcons();
+            
+            // Ensure submit button visibility
+            submitDiv.style.display = 'block';
+            resultsContainer.style.display = 'none';
+        }
+
+        /**
+         * Handles the selection of an option for a given question.
+         * @param {number} questionId - The ID of the question.
+         * @param {string} selectedOption - The text of the selected option.
+         */
+        function selectOption(questionId, selectedOption) {
+            userAnswers[questionId] = selectedOption;
+            
+            // Visually update the selection (remove 'selected' from siblings, add to self)
+            document.querySelectorAll(`[data-question-id="${questionId}"]`).forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            const selectedButton = document.querySelector(`[data-question-id="${questionId}"][data-option="${selectedOption.replace(/'/g, "\\'")}"].option-button`);
+            if (selectedButton) {
+                selectedButton.classList.add('selected');
+            }
+            
+            // Check if all questions are answered to enable submit button
+            checkSubmitReadiness();
+        }
+
+        /**
+         * Checks if all questions have been answered and enables/disables the submit button.
+         */
+        function checkSubmitReadiness() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const allAnswered = answeredCount === questions.length;
+            submitBtn.disabled = !allAnswered;
+        }
+
+
+        /**
+         * Calculates the score and displays the results.
+         */
+        function submitQuiz() {
+            let score = 0;
+            
+            questions.forEach(q => {
+                const userAnswer = userAnswers[q.id];
+                if (userAnswer === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            // Display results
+            scoreText.innerHTML = `Your Score: <span class="text-emerald-600 font-extrabold">${score}/${questions.length}</span>`;
+            
+            // Hide quiz and show results
+            questionsArea.style.display = 'none';
+            submitDiv.style.display = 'none';
+            resultsContainer.style.display = 'block';
+        }
+
+        /**
+         * Resets the quiz state and re-renders the questions.
+         */
+        function retryQuiz() {
+            userAnswers = {}; // Clear answers
+            submitBtn.disabled = true; // Disable submit button
+            questionsArea.style.display = 'block'; // Show quiz
+            submitDiv.style.display = 'block'; // Show submit button
+            resultsContainer.style.display = 'none'; // Hide results
+            renderQuiz();
+        }
+
+        // Initialize the quiz when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            checkSubmitReadiness(); // Initial check to ensure submit is disabled
+        });
+
+    </script>
+</body>
+</html>
